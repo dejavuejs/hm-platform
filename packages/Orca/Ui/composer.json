@@ -1,0 +1,25 @@
+{
+    "name": "orca/orca-ui",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Orca\\Ui\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Ui\\Providers\\UiServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

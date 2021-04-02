@@ -1,0 +1,27 @@
+{
+    "name": "orca/orca-cms",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Prashant Singh",
+            "email": ""
+        }
+    ],
+    "require": {
+        "konekt/concord": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orca\\CMS\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\CMS\\Providers\\CMSServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

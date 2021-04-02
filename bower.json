@@ -1,0 +1,18 @@
+{
+  "name": "orca",
+  "description": "A baseplate",
+  "main": "",
+  "authors": [
+    "Orca"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ecommerce",
+    "framework",
+    "laravel",
+    "php",
+    "store",
+    "commerce"
+  ],
+  "homepage": ""
+}

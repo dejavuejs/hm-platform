@@ -1,0 +1,27 @@
+{
+    "name": "orca/orca-core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {
+        "propaganistas/laravel-intl": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orca\\Core\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Core\\Providers\\CoreServiceProvider"
+            ],
+            "aliases": { }
+        }
+    },
+    "minimum-stability": "dev"
+}

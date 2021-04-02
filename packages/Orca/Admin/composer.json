@@ -1,0 +1,29 @@
+{
+    "name": "orca/laravel-admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {
+        "orca/laravel-user": "dev-master",
+        "orca/laravel-ui": "dev-master",
+        "orca/laravel-core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orca\\Admin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Admin\\AdminServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

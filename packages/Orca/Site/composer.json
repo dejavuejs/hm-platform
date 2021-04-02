@@ -1,0 +1,26 @@
+{
+    "name": "orca/orca-Site",
+    "license": "MIT",
+    "description" : "Site package for store front and audiences",
+    "authors": [
+        {
+            "name": "Prashant Singh",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Orca\\Site\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Site\\Providers\\SiteServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

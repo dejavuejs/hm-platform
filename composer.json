@@ -1,0 +1,103 @@
+{
+    "name": "orca/orca",
+    "description": "Orca Baseplate",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-curl": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-tokenizer": "*",
+        "astrotomic/laravel-translatable": "*",
+        "aws/aws-sdk-php-laravel": "dev-master",
+        "bagisto/bagisto-package-generator": "dev-master",
+        "barryvdh/laravel-dompdf": "^0.8.0@dev",
+        "doctrine/dbal": "2.*",
+        "fideloper/proxy": "^4.4",
+        "flynsarmy/db-blade-compiler": "*",
+        "fruitcake/laravel-cors": "^2.0",
+        "graham-campbell/markdown": "13.1",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "*",
+        "intervention/imagecache": "*",
+        "kalnoy/nestedset": "*",
+        "konekt/concord": "*",
+        "laravel/framework": "^8",
+        "laravel/helpers": "1.x-dev",
+        "laravel/sanctum": "3.x-dev",
+        "laravel/tinker": "^2.5",
+        "league/flysystem": "1.1.0",
+        "league/flysystem-cached-adapter": "dev-master",
+        "league/flysystem-sftp": "dev-master",
+        "maatwebsite/excel": "3.2.x-dev",
+        "predis/predis": "2.0.x-dev",
+        "prettus/l5-repository": "*"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.0",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/breeze": "2.x-dev",
+        "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5"
+    },
+    "replace": {
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+
+        "psr-4": {
+            "App\\": "app/",
+            "Orca\\User\\": "packages/Orca/User/src",
+            "Orca\\Admin\\": "packages/Orca/Admin/src",
+            "Orca\\Category\\": "packages/Orca/Category/src",
+            "Orca\\Audience\\": "packages/Orca/Audience/src",
+            "Orca\\Ui\\": "packages/Orca/Ui/src",
+            "Orca\\Site\\": "packages/Orca/Site/src",
+            "Orca\\Core\\": "packages/Orca/Core/src",
+            "Orca\\Theme\\": "packages/Orca/Theme/src",
+            "Orca\\CMS\\": "packages/Orca/CMS/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "barryvdh/laravel-debugbar"
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ]
+    },
+    "config": {
+        "preferred-install": "auto",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev"
+}

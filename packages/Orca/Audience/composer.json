@@ -1,0 +1,26 @@
+{
+    "name": "orca/laravel-audience",
+    "description": "Audiences Package for themeing and various features for audiences",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Prashant Singh",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Orca\\Audience\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Audience\\Providers\\AudienceServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,27 @@
+{
+    "name": "orca/laravel-category",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {
+        "baum/baum": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orca\\Category\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\Category\\Providers\\CategoryServiceProvider"
+            ],
+            "aliases": { }
+        }
+    },
+    "minimum-stability": "dev"
+}

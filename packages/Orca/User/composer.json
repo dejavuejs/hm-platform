@@ -1,0 +1,27 @@
+{
+    "name": "orca/orca-user",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Orca\\User\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orca\\User\\Providers\\UserServiceProvider"
+            ],
+            "aliases": {
+                "Bouncer": "Orca\\User\\Facades\\Bouncer"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
