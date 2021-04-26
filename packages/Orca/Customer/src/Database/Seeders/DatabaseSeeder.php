@@ -1,7 +1,8 @@
 <?php
 
+namespace Orca\Customer\Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use Orca\Admin\Database\Seeders\DatabaseSeeder as OrcaDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(OrcaDatabaseSeeder::class);
+        $this->call(CustomerTableSeeder::class);
+        $this->call(CustomerGroupTableSeeder::class);
     }
 }

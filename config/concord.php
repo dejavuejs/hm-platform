@@ -11,7 +11,7 @@ return [
 
         \Orca\Category\Providers\ModuleServiceProvider::class,
         \Orca\Core\Providers\ModuleServiceProvider::class,
-        \Orca\Audience\Providers\ModuleServiceProvider::class,
+        \Orca\Customer\Providers\ModuleServiceProvider::class,
         \Orca\CMS\Providers\ModuleServiceProvider::class,
         \Orca\User\Providers\ModuleServiceProvider::class,
     ]

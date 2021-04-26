@@ -14,12 +14,12 @@ return [
 
         'api' => [
             'driver' => 'jwt',
-            'provider' => 'audiences',
+            'provider' => 'customers',
         ],
 
-        'audience' =>[
+        'customer' =>[
             'driver' => 'session',
-            'provider' => 'audiences'
+            'provider' => 'customers'
         ],
 
         'admin' => [
@@ -34,9 +34,9 @@ return [
     ],
 
     'providers' => [
-        'audiences' => [
+        'customers' => [
             'driver' => 'eloquent',
-            'model' => Orca\Audience\Models\Audience::class,
+            'model' => Orca\Customer\Models\Customer::class,
         ],
 
         'admins' => [
@@ -51,9 +51,9 @@ return [
             'table' => 'admin_password_resets',
             'expire' => 60,
         ],
-        'audiences' => [
-            'provider' => 'audiences',
-            'table' => 'audience_password_resets',
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'customer_password_resets',
             'expire' => 60,
         ],
     ],

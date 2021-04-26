@@ -233,7 +233,7 @@ return [
         Orca\Category\Providers\CategoryServiceProvider::class,
         Orca\Core\Providers\CoreServiceProvider::class,
         Orca\Site\Providers\SiteServiceProvider::class,
-        Orca\Audience\Providers\AudienceServiceProvider::class,
+        Orca\Customer\Providers\CustomerServiceProvider::class,
         Orca\CMS\Providers\CMSServiceProvider::class
     ],
 

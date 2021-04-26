@@ -5,7 +5,7 @@ return [
 
     ],
 
-    'audience' => [
+    'customer' => [
 
     ]
 ];
