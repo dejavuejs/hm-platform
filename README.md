@@ -75,11 +75,23 @@ properties:
 5. Required
 6. Immutable (i18n)
 
+## There are two type of attributes:
+1. Core
+2. Derived or composable
+
+The above two types also gets inherited in our CRUD and referential resources. May be our application resources use attributes and make some of those attributes 
+as core attributes (in simple word as required information when creating a resource entry).
+
+## Resources are a composition of attributes and attributes are composed from JSON schemas that are validated.
+When next time a static page is being rendered for end customer its schema driven render is assured by attributes and its easy to implement frontend agnostic
+behaviour. Since you don't change your static page on daily basis so it can be a set of attributes and it makes sense when you name your static page resource
+as CMS now.
+
 Orca can create resource via attributes and via your own customer attribute implementation but gives us hybrid approach through which we can achieve code reusability.
 
 Since a single admin panel is all you ever wanted to serve your customers its like your central command. That is able to manage very essential information across 
 your services.
 
-
+Orca is functional but it is under development and is getting rapidly updated and ready for our own usage.
 
 
