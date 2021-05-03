@@ -44,7 +44,7 @@ types. So we have figured out the solution and this dashboard will soon become c
 Attributes are your daily used language primitive types, composable type of service units whether stored in certain kind of memory system or get derived when 
 required.
 
-# What need to do, now (better late than never)
+# What we need to do, now (Its better late than never)
 Just to manage resources and referential integrity we write schemas and views to make it usable as a service for end customers. While services which cannot 
 be seen complete via attributes or are better implemented by someone such as AWS SNS/SQL/Redis/etc can be coupled in modules and packages and be used with 
 appstore. We now get a complete picture of our clients now & what they are using so they are now real easy to be invoiced very accurately.
