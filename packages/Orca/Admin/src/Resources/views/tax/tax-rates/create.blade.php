@@ -45,7 +45,7 @@
                 <span class="control-error" v-if="errors.has('identifier')">@{{ errors.first('identifier') }}</span>
             </div>
 
-            @include ('admin::audiences.country-state', ['countryCode' => old('country'), 'stateCode' => old('state')])
+            @include ('admin::customers.country-state', ['countryCode' => old('country'), 'stateCode' => old('state')])
 
             <div class="control-group">
                 <span class="checkbox">

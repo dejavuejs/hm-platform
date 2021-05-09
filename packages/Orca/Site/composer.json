@@ -1,7 +1,7 @@
 {
     "name": "orca/orca-Site",
     "license": "MIT",
-    "description" : "Site package for store front and audiences",
+    "description" : "Site package for store front and customers",
     "authors": [
         {
             "name": "Prashant Singh",

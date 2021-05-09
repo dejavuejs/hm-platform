@@ -3,23 +3,23 @@
 @extends('site::layouts.master')
 
 @section('page_title')
-    {{ __('site::app.audience.account.review.index.page-title') }}
+    {{ __('site::app.customer.account.review.index.page-title') }}
 @endsection
 
 @section('content-wrapper')
     <div class="account-content">
-        @include('site::audiences.account.partials.sidemenu')
+        @include('site::customers.account.partials.sidemenu')
 
         <div class="account-layout">
 
             <div class="account-head">
-                <span class="back-icon"><a href="{{ route('audience.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
+                <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
 
-                <span class="account-heading">{{ __('site::app.audience.account.review.index.title') }}</span>
+                <span class="account-heading">{{ __('site::app.customer.account.review.index.title') }}</span>
 
                 @if (count($reviews) > 1)
                     <div class="account-action">
-                        <a href="{{ route('audience.review.deleteall') }}">{{ __('site::app.wishlist.deleteall') }}</a>
+                        <a href="{{ route('customer.review.deleteall') }}">{{ __('site::app.wishlist.deleteall') }}</a>
                     </div>
                 @endif
 
@@ -27,7 +27,7 @@
                 <div class="horizontal-rule"></div>
             </div>
 
-            {!! view_render_event('orca.site.audiences.account.reviews.list.before', ['reviews' => $reviews]) !!}
+            {!! view_render_event('orca.site.customers.account.reviews.list.before', ['reviews' => $reviews]) !!}
 
             <div class="account-items-list">
                 @if (! $reviews->isEmpty())
@@ -60,20 +60,20 @@
                             </div>
 
                             <div class="operations">
-                                <a class="mb-50" href="{{ route('audience.review.delete', $review->id) }}"><span class="icon trash-icon"></span></a>
+                                <a class="mb-50" href="{{ route('customer.review.delete', $review->id) }}"><span class="icon trash-icon"></span></a>
                             </div>
                         </div>
                         <div class="horizontal-rule mb-10 mt-10"></div>
                     @endforeach
                 @else
                     <div class="empty mt-15">
-                        {{ __('audience::app.reviews.empty') }}
+                        {{ __('customer::app.reviews.empty') }}
                     </div>
                 @endif
 
             </div>
 
-            {!! view_render_event('orca.site.audiences.account.reviews.list.after', ['reviews' => $reviews]) !!}
+            {!! view_render_event('orca.site.customers.account.reviews.list.after', ['reviews' => $reviews]) !!}
         </div>
     </div>
 @endsection

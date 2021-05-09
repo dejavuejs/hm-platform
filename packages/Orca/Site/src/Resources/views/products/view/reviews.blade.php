@@ -29,7 +29,7 @@
 
             </div>
 
-            @if (core()->getConfigData('catalog.products.review.guest_review') || auth()->guard('audience')->check())
+            @if (core()->getConfigData('catalog.products.review.guest_review') || auth()->guard('customer')->check())
                 <a href="{{ route('Site.reviews.create', $product->url_key) }}" class="btn btn-lg btn-primary">
                     {{ __('site::app.products.write-review-btn') }}
                 </a>
@@ -76,7 +76,7 @@
         </div>
     </div>
 @else
-    @if (core()->getConfigData('catalog.products.review.guest_review') || auth()->guard('audience')->check())
+    @if (core()->getConfigData('catalog.products.review.guest_review') || auth()->guard('customer')->check())
         <div class="rating-reviews">
             <div class="rating-header">
                 <a href="{{ route('Site.reviews.create', $product->url_key) }}" class="btn btn-lg btn-primary">

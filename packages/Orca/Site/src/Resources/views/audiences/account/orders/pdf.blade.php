@@ -86,17 +86,17 @@
             <div class="invoice-summary">
 
                 <div class="row">
-                    <span class="label">{{ __('site::app.audience.account.order.view.invoice-id') }} -</span>
+                    <span class="label">{{ __('site::app.customer.account.order.view.invoice-id') }} -</span>
                     <span class="value">#{{ $invoice->id }}</span>
                 </div>
 
                 <div class="row">
-                    <span class="label">{{ __('site::app.audience.account.order.view.order-id') }} -</span>
+                    <span class="label">{{ __('site::app.customer.account.order.view.order-id') }} -</span>
                     <span class="value">#{{ $invoice->order_id }}</span>
                 </div>
 
                 <div class="row">
-                    <span class="label">{{ __('site::app.audience.account.order.view.order-date') }} -</span>
+                    <span class="label">{{ __('site::app.customer.account.order.view.order-date') }} -</span>
                     <span class="value">{{ core()->formatDate($invoice->order->created_at, 'M d, Y') }}</span>
                 </div>
 
@@ -104,8 +104,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 50%">{{ __('site::app.audience.account.order.view.bill-to') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.ship-to') }}</th>
+                                <th style="width: 50%">{{ __('site::app.customer.account.order.view.bill-to') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.ship-to') }}</th>
                             </tr>
                         </thead>
 
@@ -117,7 +117,7 @@
                                     <p>{{ $invoice->order->billing_address->city }}</p>
                                     <p>{{ $invoice->order->billing_address->state }}</p>
                                     <p>{{ core()->country_name($invoice->order->billing_address->country) }} {{ $invoice->order->billing_address->postcode }}</p>
-                                    {{ __('site::app.audience.account.order.view.contact') }} : {{ $invoice->order->billing_address->phone }}
+                                    {{ __('site::app.customer.account.order.view.contact') }} : {{ $invoice->order->billing_address->phone }}
                                 </td>
                                 <td>
                                     <p>{{ $invoice->order->shipping_address->name }}</p>
@@ -125,7 +125,7 @@
                                     <p>{{ $invoice->order->shipping_address->city }}</p>
                                     <p>{{ $invoice->order->shipping_address->state }}</p>
                                     <p>{{ core()->country_name($invoice->order->shipping_address->country) }} {{ $invoice->order->shipping_address->postcode }}</p>
-                                    {{ __('site::app.audience.account.order.view.contact') }} : {{ $invoice->order->shipping_address->phone }}
+                                    {{ __('site::app.customer.account.order.view.contact') }} : {{ $invoice->order->shipping_address->phone }}
                                 </td>
                             </tr>
                         </tbody>
@@ -136,8 +136,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 50%">{{ __('site::app.audience.account.order.view.payment-method') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.shipping-method') }}</th>
+                                <th style="width: 50%">{{ __('site::app.customer.account.order.view.payment-method') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.shipping-method') }}</th>
                             </tr>
                         </thead>
 
@@ -158,13 +158,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>{{ __('site::app.audience.account.order.view.SKU') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.product-name') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.price') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.qty') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.subtotal') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.tax-amount') }}</th>
-                                <th>{{ __('site::app.audience.account.order.view.grand-total') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.SKU') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.product-name') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.price') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.qty') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.subtotal') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.tax-amount') }}</th>
+                                <th>{{ __('site::app.customer.account.order.view.grand-total') }}</th>
                             </tr>
                         </thead>
 
@@ -195,25 +195,25 @@
 
                 <table class="sale-summary">
                     <tr>
-                        <td>{{ __('site::app.audience.account.order.view.subtotal') }}</td>
+                        <td>{{ __('site::app.customer.account.order.view.subtotal') }}</td>
                         <td>-</td>
                         <td>{{ core()->formatPrice($invoice->sub_total, $invoice->order->order_currency_code) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ __('site::app.audience.account.order.view.shipping-handling') }}</td>
+                        <td>{{ __('site::app.customer.account.order.view.shipping-handling') }}</td>
                         <td>-</td>
                         <td>{{ core()->formatPrice($invoice->shipping_amount, $invoice->order->order_currency_code) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ __('site::app.audience.account.order.view.tax') }}</td>
+                        <td>{{ __('site::app.customer.account.order.view.tax') }}</td>
                         <td>-</td>
                         <td>{{ core()->formatPrice($invoice->tax_amount, $invoice->order->order_currency_code) }}</td>
                     </tr>
 
                     <tr class="bold">
-                        <td>{{ __('site::app.audience.account.order.view.grand-total') }}</td>
+                        <td>{{ __('site::app.customer.account.order.view.grand-total') }}</td>
                         <td>-</td>
                         <td>{{ core()->formatPrice($invoice->grand_total, $invoice->order->order_currency_code) }}</td>
                     </tr>

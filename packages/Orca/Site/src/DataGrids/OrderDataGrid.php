@@ -21,7 +21,7 @@ class OrderDataGrid extends DataGrid
     {
         $queryBuilder = DB::table('orders as order')
                 ->addSelect('order.id', 'order.status', 'order.created_at', 'order.grand_total', 'order.order_currency_code')
-                ->where('audience_id', auth()->guard('audience')->user()->id);
+                ->where('customer_id', auth()->guard('customer')->user()->id);
 
         $this->setQueryBuilder($queryBuilder);
     }
@@ -30,7 +30,7 @@ class OrderDataGrid extends DataGrid
     {
         $this->addColumn([
             'index' => 'id',
-            'label' => trans('site::app.audience.account.order.index.order_id'),
+            'label' => trans('site::app.customer.account.order.index.order_id'),
             'type' => 'number',
             'searchable' => false,
             'sortable' => true,
@@ -39,7 +39,7 @@ class OrderDataGrid extends DataGrid
 
         $this->addColumn([
             'index' => 'created_at',
-            'label' => trans('site::app.audience.account.order.index.date'),
+            'label' => trans('site::app.customer.account.order.index.date'),
             'type' => 'datetime',
             'searchable' => true,
             'sortable' => true,
@@ -48,7 +48,7 @@ class OrderDataGrid extends DataGrid
 
         $this->addColumn([
             'index' => 'grand_total',
-            'label' => trans('site::app.audience.account.order.index.total'),
+            'label' => trans('site::app.customer.account.order.index.total'),
             'type' => 'number',
             'searchable' => true,
             'sortable' => true,
@@ -60,7 +60,7 @@ class OrderDataGrid extends DataGrid
 
         $this->addColumn([
             'index' => 'status',
-            'label' => trans('site::app.audience.account.order.index.status'),
+            'label' => trans('site::app.customer.account.order.index.status'),
             'type' => 'string',
             'searchable' => false,
             'sortable' => true,
@@ -89,7 +89,7 @@ class OrderDataGrid extends DataGrid
         $this->addAction([
             'type' => 'View',
             'method' => 'GET',
-            'route' => 'audience.orders.view',
+            'route' => 'customer.orders.view',
             'icon' => 'icon eye-icon'
         ]);
     }

@@ -87,11 +87,11 @@
                                 <div class="section-content">
                                     <div class="row">
                                         <span class="title">
-                                            {{ __('admin::app.sales.orders.audience-name') }}
+                                            {{ __('admin::app.sales.orders.customer-name') }}
                                         </span>
 
                                         <span class="value">
-                                            {{ $order->audience_full_name }}
+                                            {{ $order->customer_full_name }}
                                         </span>
                                     </div>
 
@@ -101,7 +101,7 @@
                                         </span>
 
                                         <span class="value">
-                                            {{ $order->audience_email }}
+                                            {{ $order->customer_email }}
                                         </span>
                                     </div>
                                 </div>

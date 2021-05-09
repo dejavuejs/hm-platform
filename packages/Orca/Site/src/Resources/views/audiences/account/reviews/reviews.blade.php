@@ -3,12 +3,12 @@
 @extends('site::layouts.master')
 
 @section('page_title')
-    {{ __('site::app.audience.account.review.view.page-title') }}
+    {{ __('site::app.customer.account.review.view.page-title') }}
 @endsection
 
 @section('content-wrapper')
     <div class="account-content">
-        @include('site::audiences.account.partials.sidemenu')
+        @include('site::customers.account.partials.sidemenu')
 
         <div class="account-layout">
             <div class="account-head">
@@ -43,7 +43,7 @@
                     @endforeach
                 @else
                     <div class="empty">
-                        {{ __('audience::app.reviews.empty') }}
+                        {{ __('customer::app.reviews.empty') }}
                     </div>
                 @endif
             </div>

@@ -83,7 +83,7 @@ return [
         'id-star' => 'نجم'
     ],
 
-    'audience' => [
+    'customer' => [
         'signup-text' => [
             'account_exists' => 'لدي حساب بالفعل',
             'title' => 'وقع هنا'
@@ -447,7 +447,7 @@ return [
         'order' => [
             'subject' => 'تأكيد الطلب الجديد',
             'heading' => 'تأكيد الطلب!',
-            'dear' => 'عزيزي :audience_name',
+            'dear' => 'عزيزي :customer_name',
             'greeting' => 'شكرا على طلبك :order_id placed on :created_at',
             'summary' => 'موجز النظام',
             'shipping-address' => 'عنوان الشحن',

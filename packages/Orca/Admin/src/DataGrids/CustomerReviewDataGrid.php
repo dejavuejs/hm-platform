@@ -91,14 +91,14 @@ class CustomerReviewDataGrid extends DataGrid
         $this->addAction([
             'type' => 'Edit',
             'method' => 'GET', // use GET request only for redirect purposes
-            'route' => 'admin.audience.review.edit',
+            'route' => 'admin.customer.review.edit',
             'icon' => 'icon pencil-lg-icon'
         ]);
 
         $this->addAction([
             'type' => 'Delete',
             'method' => 'POST', // use GET request only for redirect purposes
-            'route' => 'admin.audience.review.delete',
+            'route' => 'admin.customer.review.delete',
             'icon' => 'icon trash-icon'
         ]);
     }
@@ -107,14 +107,14 @@ class CustomerReviewDataGrid extends DataGrid
         $this->addMassAction([
             'type' => 'delete',
             'label' => 'Delete',
-            'action' => route('admin.audience.review.massdelete'),
+            'action' => route('admin.customer.review.massdelete'),
             'method' => 'DELETE'
         ]);
 
         $this->addMassAction([
             'type' => 'update',
             'label' => 'Update Status',
-            'action' => route('admin.audience.review.massupdate'),
+            'action' => route('admin.customer.review.massupdate'),
             'method' => 'PUT',
             'options' => [
                 'Pending' => 0,

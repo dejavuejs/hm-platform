@@ -84,7 +84,7 @@ return [
         'name' => 'Nome'
     ],
 
-    'audience' => [
+    'customer' => [
         'signup-text' => [
             'account_exists' => 'Já tem uma conta',
             'title' => 'Entrar'
@@ -455,7 +455,7 @@ return [
         'order' => [
             'subject' => 'Confirmação de Novo Pedido',
             'heading' => 'Confirmação de Pedido!',
-            'dear' => 'Caro :audience_name',
+            'dear' => 'Caro :customer_name',
             'greeting' => 'Obrigado pelo seu Pedido :order_id realizado em :created_at',
             'summary' => 'Resumo do Pedido',
             'shipping-address' => 'Endereço de Entrega',

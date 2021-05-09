@@ -6,10 +6,10 @@
         <div>
             <div class="control-group" :class="[errors.has('country') ? 'has-error' : '']">
                 <label for="country" class="required">
-                    {{ __('admin::app.audiences.audiences.country') }}
+                    {{ __('admin::app.customers.customers.country') }}
                 </label>
 
-                <select type="text" v-validate="'required'" class="control" id="country" name="country" v-model="country" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.country') }}&quot;">
+                <select type="text" v-validate="'required'" class="control" id="country" name="country" v-model="country" data-vv-as="&quot;{{ __('admin::app.customers.customers.country') }}&quot;">
                     <option value=""></option>
 
                     @foreach (core()->countries() as $country)
@@ -26,14 +26,14 @@
 
             <div class="control-group" :class="[errors.has('state') ? 'has-error' : '']">
                 <label for="state" class="required">
-                    {{ __('admin::app.audiences.audiences.state') }}
+                    {{ __('admin::app.customers.customers.state') }}
                 </label>
 
-                <input type="text" v-validate="'required'" class="control" id="state" name="state" v-model="state" v-if="!haveStates()" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.state') }}&quot;"/>
+                <input type="text" v-validate="'required'" class="control" id="state" name="state" v-model="state" v-if="!haveStates()" data-vv-as="&quot;{{ __('admin::app.customers.customers.state') }}&quot;"/>
 
-                <select v-validate="'required'" class="control" id="state" name="state" v-model="state" v-if="haveStates()" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.state') }}&quot;">
+                <select v-validate="'required'" class="control" id="state" name="state" v-model="state" v-if="haveStates()" data-vv-as="&quot;{{ __('admin::app.customers.customers.state') }}&quot;">
 
-                    <option value="">{{ __('admin::app.audiences.audiences.select-state') }}</option>
+                    <option value="">{{ __('admin::app.customers.customers.select-state') }}</option>
 
                     <option v-for='(state, index) in countryStates[country]' :value="state.code">
                         @{{ state.default_name }}

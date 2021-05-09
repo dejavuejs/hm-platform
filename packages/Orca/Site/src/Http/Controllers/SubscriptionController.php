@@ -31,7 +31,7 @@ class SubscriptionController extends Controller
      *
      * @var array
      */
-    protected $audience;
+    protected $customer;
 
     /**
      * Subscription List Repository object
@@ -45,7 +45,7 @@ class SubscriptionController extends Controller
      *
      * @return void
      */
-    public function __construct(Audience $audience, Subscription $subscription)
+    public function __construct(Audience $customer, Subscription $subscription)
     {
         $this->subscription = $subscription;
 

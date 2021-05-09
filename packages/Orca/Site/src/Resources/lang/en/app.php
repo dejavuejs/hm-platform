@@ -87,7 +87,7 @@ return [
         'name' => 'Name'
     ],
 
-    'audience' => [
+    'customer' => [
         'signup-text' => [
             'account_exists' => 'Already have an account',
             'title' => 'Sign In'
@@ -477,7 +477,7 @@ return [
         'order' => [
             'subject' => 'New Order Confirmation',
             'heading' => 'Order Confirmation!',
-            'dear' => 'Dear :audience_name',
+            'dear' => 'Dear :customer_name',
             'dear-admin' => 'Dear :admin_name',
             'greeting' => 'Thanks for your Order :order_id placed on :created_at',
             'greeting-admin' => 'Order Id :order_id placed on :created_at',
@@ -521,7 +521,7 @@ return [
             'final-summary' => 'If you did not request a password reset, no further action is required',
             'thanks' => 'Thanks!'
         ],
-        'audience' => [
+        'customer' => [
             'subject' => 'New Audience Registration'
         ]
     ],

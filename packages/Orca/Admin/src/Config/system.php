@@ -2,15 +2,15 @@
 
 return [
     [
-        'key' => 'audience',
-        'name' => 'admin::app.admin.system.audience',
+        'key' => 'customer',
+        'name' => 'admin::app.admin.system.customer',
         'sort' => 3,
     ], [
-        'key' => 'audience.settings',
+        'key' => 'customer.settings',
         'name' => 'admin::app.admin.system.settings',
         'sort' => 1,
     ], [
-        'key' => 'audience.settings.address',
+        'key' => 'customer.settings.address',
         'name' => 'admin::app.admin.system.address',
         'sort' => 1,
         'fields' => [
@@ -23,7 +23,7 @@ return [
             ]
         ]
     ], [
-        'key' => 'audience.settings.newsletter',
+        'key' => 'customer.settings.newsletter',
         'name' => 'admin::app.admin.system.newsletter',
         'sort' => 2,
         'fields' => [
@@ -34,7 +34,7 @@ return [
             ]
         ],
     ], [
-        'key' => 'audience.settings.email',
+        'key' => 'customer.settings.email',
         'name' => 'admin::app.admin.system.email',
         'sort' => 3,
         'fields' => [

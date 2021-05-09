@@ -33,6 +33,6 @@ class SubscriptionEmail extends Mailable
         return $this->to($this->subscriptionData['email'])
                 ->from(env('SHOP_MAIL_FROM'))
                 ->subject('subscription email')
-                ->view('site::emails.audience.subscription-email')->with('data', ['content' => 'You Are Subscribed', 'token' => $this->subscriptionData['token']]);
+                ->view('site::emails.customer.subscription-email')->with('data', ['content' => 'You Are Subscribed', 'token' => $this->subscriptionData['token']]);
     }
 }

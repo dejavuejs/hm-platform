@@ -87,7 +87,7 @@ return [
         'name' => 'نام'
     ],
 
-    'audience' => [
+    'customer' => [
         'signup-text' => [
             'account_exists' => 'قبلاً حساب داشته باشید',
             'title' => 'ورود'
@@ -472,7 +472,7 @@ return [
         'order' => [
             'subject' => 'تأیید سفارش جدید',
             'heading' => 'تایید سفارش!',
-            'dear' => 'عزیز :audience_name',
+            'dear' => 'عزیز :customer_name',
             'dear-admin' => 'عزیز :admin_name',
             'greeting' => 'با تشکر از سفارش شما :order_id قرار داده شده در :created_at',
             'greeting-admin' => 'شماره سفارش :order_id قرار داده شده در :created_at',

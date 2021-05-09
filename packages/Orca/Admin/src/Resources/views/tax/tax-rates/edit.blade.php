@@ -36,7 +36,7 @@
                         <span class="control-error" v-if="errors.has('identifier')">@{{ errors.first('identifier') }}</span>
                     </div>
 
-                    @include ('admin::audiences.country-state', ['countryCode' => old('country') ?? $taxRate->country, 'stateCode' => old('state') ?? $taxRate->state])
+                    @include ('admin::customers.country-state', ['countryCode' => old('country') ?? $taxRate->country, 'stateCode' => old('state') ?? $taxRate->state])
 
                     @if ($taxRate->is_zip)
                         <input type="hidden" id="is_zip" name="is_zip" value="{{ $taxRate->is_zip }}">

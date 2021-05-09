@@ -18,11 +18,11 @@ class NewAudienceNotification extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * The audience instance.
+     * The customer instance.
      *
-     * @var audience
+     * @var customer
      */
-    public $audience;
+    public $customer;
 
     /**
      * The password instance.
@@ -36,9 +36,9 @@ class NewAudienceNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($audience, $password)
+    public function __construct($customer, $password)
     {
-        $this->audience = $audience;
+        $this->customer = $customer;
 
         $this->password = $password;
     }
@@ -50,8 +50,8 @@ class NewAudienceNotification extends Mailable
      */
     public function build()
     {
-        return $this->to($this->audience->email)
-                ->subject(trans('site::app.mail.audience.subject'))
-                ->view('site::emails.audience.new-audience')->with(['audience' => $this->audience, 'password' => $this->password]);
+        return $this->to($this->customer->email)
+                ->subject(trans('site::app.mail.customer.subject'))
+                ->view('site::emails.customer.new-customer')->with(['customer' => $this->customer, 'password' => $this->password]);
     }
 }

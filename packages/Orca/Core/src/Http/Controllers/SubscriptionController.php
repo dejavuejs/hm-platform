@@ -72,10 +72,10 @@ class SubscriptionController extends Controller
         $result = $subscriber->update($data);
 
         if ($result)
-            session()->flash('success', trans('admin::app.audiences.subscribers.update-success'));
-            // session()->flash('success', 'admin::app.audiences.subscribers.delete-success');
+            session()->flash('success', trans('admin::app.customers.subscribers.update-success'));
+            // session()->flash('success', 'admin::app.customers.subscribers.delete-success');
         else
-            session()->flash('error', trans('admin::app.audiences.subscribers.update-failed'));
+            session()->flash('error', trans('admin::app.customers.subscribers.update-failed'));
 
         return redirect()->route($this->_config['redirect']);
     }

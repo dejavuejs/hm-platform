@@ -14,12 +14,12 @@
             </span> <br>
 
             <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
-                {{ __('site::app.mail.order.dear', ['audience_name' => $order->audience_full_name]) }},
+                {{ __('site::app.mail.order.dear', ['customer_name' => $order->customer_full_name]) }},
             </p>
 
             <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
                 {!! __('site::app.mail.order.greeting', [
-                    'order_id' => '<a href="' . route('audience.orders.view', $order->id) . '" style="color: #0041FF; font-weight: bold;">#' . $order->id . '</a>',
+                    'order_id' => '<a href="' . route('customer.orders.view', $order->id) . '" style="color: #0041FF; font-weight: bold;">#' . $order->id . '</a>',
                     'created_at' => $order->created_at
                     ])
                 !!}
@@ -102,21 +102,21 @@
                 border-spacing: 0;width: 100%">
                     <thead>
                         <tr style="background-color: #f2f2f2">
-                            <th style="text-align: left;padding: 8px">{{ __('site::app.audience.account.order.view.product-name') }}</th>
-                            <th style="text-align: left;padding: 8px">{{ __('site::app.audience.account.order.view.price') }}</th>
-                            <th style="text-align: left;padding: 8px">{{ __('site::app.audience.account.order.view.qty') }}</th>
+                            <th style="text-align: left;padding: 8px">{{ __('site::app.customer.account.order.view.product-name') }}</th>
+                            <th style="text-align: left;padding: 8px">{{ __('site::app.customer.account.order.view.price') }}</th>
+                            <th style="text-align: left;padding: 8px">{{ __('site::app.customer.account.order.view.qty') }}</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach ($invoice->items as $item)
                             <tr>
-                                <td data-value="{{ __('site::app.audience.account.order.view.product-name') }}" style="text-align: left;padding: 8px">{{ $item->name }}</td>
+                                <td data-value="{{ __('site::app.customer.account.order.view.product-name') }}" style="text-align: left;padding: 8px">{{ $item->name }}</td>
 
-                                <td data-value="{{ __('site::app.audience.account.order.view.price') }}" style="text-align: left;padding: 8px">{{ core()->formatPrice($item->price, $order->order_currency_code) }}
+                                <td data-value="{{ __('site::app.customer.account.order.view.price') }}" style="text-align: left;padding: 8px">{{ core()->formatPrice($item->price, $order->order_currency_code) }}
                                 </td>
 
-                                <td data-value="{{ __('site::app.audience.account.order.view.qty') }}" style="text-align: left;padding: 8px">{{ $item->qty }}</td>
+                                <td data-value="{{ __('site::app.customer.account.order.view.qty') }}" style="text-align: left;padding: 8px">{{ $item->qty }}</td>
 
                                 @if ($html = $item->getOptionDetailHtml())
                                     <div style="">

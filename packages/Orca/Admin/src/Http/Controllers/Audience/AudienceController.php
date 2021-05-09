@@ -31,14 +31,14 @@ class AudienceController extends Controller
      *
      * @var array
      */
-    protected $audience;
+    protected $customer;
 
      /**
      * AudienceGroupRepository object
      *
      * @var array
      */
-    protected $audienceGroup;
+    protected $customerGroup;
 
      /**
      * ChannelRepository object
@@ -50,19 +50,19 @@ class AudienceController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param \Orca\Audience\Repositories\AudienceRepository $audience
-     * @param \Orca\Audience\Repositories\AudienceGroupRepository $audienceGroup
+     * @param \Orca\Audience\Repositories\AudienceRepository $customer
+     * @param \Orca\Audience\Repositories\AudienceGroupRepository $customerGroup
      * @param \Orca\Core\Repositories\ChannelRepository $channel
      */
-    public function __construct(Audience $audience, AudienceGroup $audienceGroup, Channel $channel)
+    public function __construct(Audience $customer, AudienceGroup $customerGroup, Channel $channel)
     {
         $this->_config = request('_config');
 
         $this->middleware('admin');
 
-        $this->audience = $audience;
+        $this->customer = $customer;
 
-        $this->audienceGroup = $audienceGroup;
+        $this->customerGroup = $customerGroup;
 
         $this->channel = $channel;
 
@@ -85,11 +85,11 @@ class AudienceController extends Controller
      */
     public function create()
     {
-        $audienceGroup = $this->audienceGroup->findWhere([['code', '<>', 'guest']]);
+        $customerGroup = $this->customerGroup->findWhere([['code', '<>', 'guest']]);
 
         $channelName = $this->channel->all();
 
-        return view($this->_config['view'], compact('audienceGroup', 'channelName'));
+        return view($this->_config['view'], compact('customerGroup', 'channelName'));
     }
 
      /**
@@ -104,7 +104,7 @@ class AudienceController extends Controller
             'first_name' => 'string|required',
             'last_name' => 'string|required',
             'gender' => 'required',
-            'email' => 'required|unique:audiences,email',
+            'email' => 'required|unique:customers,email',
             'date_of_birth' => 'date|before:today'
         ]);
 
@@ -116,9 +116,9 @@ class AudienceController extends Controller
 
         $data['is_verified'] = 1;
 
-        $audience = $this->audience->create($data);
+        $customer = $this->customer->create($data);
 
-        Mail::queue(new NewAudienceNotification($audience, $password));
+        Mail::queue(new NewAudienceNotification($customer, $password));
 
         session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Audience']));
 
@@ -133,13 +133,13 @@ class AudienceController extends Controller
      */
     public function edit($id)
     {
-        $audience = $this->audience->findOrFail($id);
+        $customer = $this->customer->findOrFail($id);
 
-        $audienceGroup = $this->audienceGroup->findWhere([['code', '<>', 'guest']]);
+        $customerGroup = $this->customerGroup->findWhere([['code', '<>', 'guest']]);
 
         $channelName = $this->channel->all();
 
-        return view($this->_config['view'], compact('audience', 'audienceGroup', 'channelName'));
+        return view($this->_config['view'], compact('customer', 'customerGroup', 'channelName'));
     }
 
      /**
@@ -156,11 +156,11 @@ class AudienceController extends Controller
             'first_name' => 'string|required',
             'last_name' => 'string|required',
             'gender' => 'required',
-            'email' => 'required|unique:audiences,email,'. $id,
+            'email' => 'required|unique:customers,email,'. $id,
             'date_of_birth' => 'date|before:today'
         ]);
 
-        $this->audience->update(request()->all(), $id);
+        $this->customer->update(request()->all(), $id);
 
         session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Audience']));
 
@@ -175,10 +175,10 @@ class AudienceController extends Controller
      */
     public function destroy($id)
     {
-        $audience = $this->audience->findorFail($id);
+        $customer = $this->customer->findorFail($id);
 
         try {
-            $this->audience->delete($id);
+            $this->customer->delete($id);
 
             session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Audience']));
 
@@ -191,15 +191,15 @@ class AudienceController extends Controller
     }
 
     /**
-     * To load the note taking screen for the audiences
+     * To load the note taking screen for the customers
      *
      * @return view
      */
     public function createNote($id)
     {
-        $audience = $this->audience->find($id);
+        $customer = $this->customer->find($id);
 
-        return view($this->_config['view'])->with('audience', $audience);
+        return view($this->_config['view'])->with('customer', $customer);
     }
 
     /**
@@ -213,9 +213,9 @@ class AudienceController extends Controller
             'notes' => 'string|nullable'
         ]);
 
-        $audience = $this->audience->find(request()->input('_audience'));
+        $customer = $this->customer->find(request()->input('_customer'));
 
-        $noteTaken = $audience->update([
+        $noteTaken = $customer->update([
             'notes' => request()->input('notes')
         ]);
 
@@ -229,44 +229,44 @@ class AudienceController extends Controller
     }
 
     /**
-     * To mass update the audience
+     * To mass update the customer
      *
      * @return redirect
      */
     public function massUpdate()
     {
-        $audienceIds = explode(',', request()->input('indexes'));
+        $customerIds = explode(',', request()->input('indexes'));
         $updateOption = request()->input('update-options');
 
-        foreach ($audienceIds as $audienceId) {
-            $audience = $this->audience->find($audienceId);
+        foreach ($customerIds as $customerId) {
+            $customer = $this->customer->find($customerId);
 
-            $audience->update([
+            $customer->update([
                 'status' => $updateOption
             ]);
         }
 
-        session()->flash('success', trans('admin::app.audiences.audiences.mass-update-success'));
+        session()->flash('success', trans('admin::app.customers.customers.mass-update-success'));
 
         return redirect()->back();
     }
 
     /**
-     * To mass delete the audience
+     * To mass delete the customer
      *
      * @return redirect
      */
     public function massDestroy()
     {
-        $audienceIds = explode(',', request()->input('indexes'));
+        $customerIds = explode(',', request()->input('indexes'));
 
-        foreach ($audienceIds as $audienceId) {
-            $this->audience->deleteWhere([
-                'id' => $audienceId
+        foreach ($customerIds as $customerId) {
+            $this->customer->deleteWhere([
+                'id' => $customerId
             ]);
         }
 
-        session()->flash('success', trans('admin::app.audiences.audiences.mass-destroy-success'));
+        session()->flash('success', trans('admin::app.customers.customers.mass-destroy-success'));
 
         return redirect()->back();
     }

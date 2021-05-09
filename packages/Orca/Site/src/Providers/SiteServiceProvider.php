@@ -63,10 +63,10 @@ class SiteServiceProvider extends ServiceProvider
      */
     protected function composeView()
     {
-        view()->composer('site::audiences.account.partials.sidemenu', function ($view) {
+        view()->composer('site::customers.account.partials.sidemenu', function ($view) {
             $tree = Tree::create();
 
-            foreach (config('menu.audience') as $item) {
+            foreach (config('menu.customer') as $item) {
                 $tree->add($item, 'menu');
             }
 
@@ -84,7 +84,7 @@ class SiteServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/menu.php', 'menu.audience'
+            dirname(__DIR__) . '/Config/menu.php', 'menu.customer'
         );
     }
 }

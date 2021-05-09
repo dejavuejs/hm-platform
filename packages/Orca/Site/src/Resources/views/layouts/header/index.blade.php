@@ -83,7 +83,7 @@
                         <i class="icon arrow-down-icon"></i>
                     </span>
 
-                    @guest('audience')
+                    @guest('customer')
                         <ul class="dropdown-list account guest">
                             <li>
                                 <div>
@@ -97,11 +97,11 @@
                                 </div>
 
                                 <div style="margin-top: 15px;">
-                                    <a class="btn btn-primary btn-md" href="{{ route('audience.session.index') }}" style="color: #ffffff">
+                                    <a class="btn btn-primary btn-md" href="{{ route('customer.session.index') }}" style="color: #ffffff">
                                         {{ __('site::app.header.sign-in') }}
                                     </a>
 
-                                    <a class="btn btn-primary btn-md" href="{{ route('audience.register.index') }}" style="float: right; color: #ffffff">
+                                    <a class="btn btn-primary btn-md" href="{{ route('customer.register.index') }}" style="float: right; color: #ffffff">
                                         {{ __('site::app.header.sign-up') }}
                                     </a>
                                 </div>
@@ -109,22 +109,22 @@
                         </ul>
                     @endguest
 
-                    @auth('audience')
-                        <ul class="dropdown-list account audience">
+                    @auth('customer')
+                        <ul class="dropdown-list account customer">
                             <li>
                                 <div>
                                     <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">
-                                        {{ auth()->guard('audience')->user()->first_name }}
+                                        {{ auth()->guard('customer')->user()->first_name }}
                                     </label>
                                 </div>
 
                                 <ul>
                                     <li>
-                                        <a href="{{ route('audience.profile.index') }}">{{ __('site::app.header.profile') }}</a>
+                                        <a href="{{ route('customer.profile.index') }}">{{ __('site::app.header.profile') }}</a>
                                     </li>
 
                                     <li>
-                                        <a href="{{ route('audience.wishlist.index') }}">{{ __('site::app.header.wishlist') }}</a>
+                                        <a href="{{ route('customer.wishlist.index') }}">{{ __('site::app.header.wishlist') }}</a>
                                     </li>
 
                                     <li>
@@ -132,7 +132,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="{{ route('audience.session.destroy') }}">{{ __('site::app.header.logout') }}</a>
+                                        <a href="{{ route('customer.session.destroy') }}">{{ __('site::app.header.logout') }}</a>
                                     </li>
                                 </ul>
                             </li>

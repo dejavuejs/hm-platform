@@ -112,64 +112,64 @@ return [
         'route' => 'admin.catalog.families.delete',
         'sort' => 3
     ], [
-        'key' => 'audiences',
-        'name' => 'admin::app.acl.audiences',
-        'route' => 'admin.audience.index',
+        'key' => 'customers',
+        'name' => 'admin::app.acl.customers',
+        'route' => 'admin.customer.index',
         'sort' => 4
     ], [
-        'key' => 'audiences.audiences',
-        'name' => 'admin::app.acl.audiences',
-        'route' => 'admin.audience.index',
+        'key' => 'customers.customers',
+        'name' => 'admin::app.acl.customers',
+        'route' => 'admin.customer.index',
         'sort' => 1
     ], [
-        'key' => 'audiences.audiences.create',
+        'key' => 'customers.customers.create',
         'name' => 'admin::app.acl.create',
-        'route' => 'admin.audience.create',
+        'route' => 'admin.customer.create',
         'sort' => 1
     ], [
-        'key' => 'audiences.audiences.edit',
+        'key' => 'customers.customers.edit',
         'name' => 'admin::app.acl.edit',
-        'route' => 'admin.audience.edit',
+        'route' => 'admin.customer.edit',
         'sort' => 2
     ], [
-        'key' => 'audiences.audiences.delete',
+        'key' => 'customers.customers.delete',
         'name' => 'admin::app.acl.delete',
-        'route' => 'admin.audience.delete',
+        'route' => 'admin.customer.delete',
         'sort' => 3
     ], [
-        'key' => 'audiences.groups',
+        'key' => 'customers.groups',
         'name' => 'admin::app.acl.groups',
         'route' => 'admin.groups.index',
         'sort' => 2
     ], [
-        'key' => 'audiences.groups.create',
+        'key' => 'customers.groups.create',
         'name' => 'admin::app.acl.create',
         'route' => 'admin.groups.create',
         'sort' => 1
     ], [
-        'key' => 'audiences.groups.edit',
+        'key' => 'customers.groups.edit',
         'name' => 'admin::app.acl.edit',
         'route' => 'admin.groups.edit',
         'sort' => 2
     ], [
-        'key' => 'audiences.groups.delete',
+        'key' => 'customers.groups.delete',
         'name' => 'admin::app.acl.delete',
         'route' => 'admin.groups.delete',
         'sort' => 3
     ], [
-        'key' => 'audiences.reviews',
+        'key' => 'customers.reviews',
         'name' => 'admin::app.acl.reviews',
-        'route' => 'admin.audience.review.index',
+        'route' => 'admin.customer.review.index',
         'sort' => 3
     ], [
-        'key' => 'audiences.reviews.edit',
+        'key' => 'customers.reviews.edit',
         'name' => 'admin::app.acl.edit',
-        'route' => 'admin.audience.review.edit',
+        'route' => 'admin.customer.review.edit',
         'sort' => 1
     ], [
-        'key' => 'audiences.reviews.delete',
+        'key' => 'customers.reviews.delete',
         'name' => 'admin::app.acl.delete',
-        'route' => 'admin.audience.review.delete',
+        'route' => 'admin.customer.review.delete',
         'sort' => 2
     ], [
         'key' => 'configuration',

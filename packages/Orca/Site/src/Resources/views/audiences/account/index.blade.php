@@ -2,7 +2,7 @@
 
 @section('content-wrapper')
     <div class="account-content">
-        @include('site::audiences.account.partials.sidemenu')
+        @include('site::customers.account.partials.sidemenu')
         <h1>Account Index Page</h1>
     </div>
 

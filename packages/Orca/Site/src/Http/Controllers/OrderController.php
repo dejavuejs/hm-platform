@@ -10,8 +10,8 @@ use Auth;
 use PDF;
 
 /**
- * Audience controlller for the audience basically for the tasks of audiences
- * which will be done after audience authenticastion.
+ * Audience controlller for the customer basically for the tasks of customers
+ * which will be done after customer authenticastion.
  *
  * @author    Prashant Singh <>
  *
@@ -51,7 +51,7 @@ class OrderController extends Controller
         InvoiceRepository $invoice
     )
     {
-        $this->middleware('audience');
+        $this->middleware('customer');
 
         $this->_config = request('_config');
 
@@ -67,7 +67,7 @@ class OrderController extends Controller
     */
     public function index() {
         $orders = $this->order->findWhere([
-            'audience_id' => auth()->guard('audience')->user()->id
+            'customer_id' => auth()->guard('customer')->user()->id
         ]);
 
         return view($this->_config['view'], compact('orders'));
@@ -82,7 +82,7 @@ class OrderController extends Controller
     public function view($id)
     {
         $order = $this->order->findOneWhere([
-            'audience_id' => auth()->guard('audience')->user()->id,
+            'customer_id' => auth()->guard('customer')->user()->id,
             'id' => $id
         ]);
 
@@ -102,7 +102,7 @@ class OrderController extends Controller
     {
         $invoice = $this->invoice->findOrFail($id);
 
-        $pdf = PDF::loadView('site::audiences.account.orders.pdf', compact('invoice'))->setPaper('a4');
+        $pdf = PDF::loadView('site::customers.account.orders.pdf', compact('invoice'))->setPaper('a4');
 
         return $pdf->download('invoice-' . $invoice->created_at->format('d-m-Y') . '.pdf');
     }

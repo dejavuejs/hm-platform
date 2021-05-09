@@ -64,9 +64,9 @@ class ProductController extends Controller
     {
         $product = $this->product->findBySlugOrFail($slug);
 
-        $audience = auth()->guard('audience')->user();
+        $customer = auth()->guard('customer')->user();
 
-        return view($this->_config['view'], compact('product','audience'));
+        return view($this->_config['view'], compact('product','customer'));
     }
 
     /**

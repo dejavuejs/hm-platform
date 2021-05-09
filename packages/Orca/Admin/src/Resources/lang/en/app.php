@@ -23,7 +23,7 @@ return [
         'categories' => 'Categories',
         'attributes' => 'Attributes',
         'attribute-families' => 'Attribute Families',
-        'audiences' => 'Audiences',
+        'customers' => 'Audiences',
         'groups' => 'Groups',
         'reviews' => 'Reviews',
         'newsletter-subscriptions' => 'Newsletter Subscriptions',
@@ -56,7 +56,7 @@ return [
         'categories' => 'Categories',
         'attributes' => 'Attributes',
         'attribute-families' => 'Attribute Families',
-        'audiences' => 'Audiences',
+        'customers' => 'Audiences',
         'groups' => 'Groups',
         'reviews' => 'Reviews',
         'newsletter-subscriptions' => 'Newsletter Subscriptions',
@@ -84,7 +84,7 @@ return [
         'title' => 'Dashboard',
         'from' => 'From',
         'to' => 'To',
-        'total-audiences' => 'Total Audiences',
+        'total-customers' => 'Total Audiences',
         'total-orders' => 'Total Orders',
         'total-sale' => 'Total Sale',
         'average-sale' => 'Average Order Sale',
@@ -95,7 +95,7 @@ return [
         'product-count' => ':count Products',
         'top-selling-products' => 'Top Selling Products',
         'sale-count' => ':count Sales',
-        'audience-with-most-sales' => 'Audience With Most Sales',
+        'customer-with-most-sales' => 'Audience With Most Sales',
         'order-count' => ':count Orders',
         'revenue' => 'Revenue :total',
         'stock-threshold' => 'Stock Threshold',
@@ -391,7 +391,7 @@ return [
         ]
     ],
 
-    'audiences' => [
+    'customers' => [
         'groups' =>[
             'add-title' => 'Add Group',
             'edit-title' => 'Edit Group',
@@ -411,7 +411,7 @@ return [
             'help-title' => 'Add Note On This Audience'
         ],
 
-        'audiences' => [
+        'customers' => [
             'add-title' => 'Add Audience',
             'edit-title' => 'Edit Audience',
             'title' => 'Audiences',
@@ -421,7 +421,7 @@ return [
             'email' => 'Email',
             'date_of_birth' => 'Date of Birth',
             'phone' => 'Phone',
-            'audience_group' => 'Audience Group',
+            'customer_group' => 'Audience Group',
             'save-btn-title' => 'Save Audience',
             'channel_name' => 'Channel Name',
             'state' => 'State',
@@ -555,7 +555,7 @@ return [
         'user-define-error' => 'Can not delete system :name',
         'attribute-error' => ':name is used in configurable products.',
         'attribute-product-error' => ':name is used in products.',
-        'audience-associate' => ':name can not be deleted because audience is associated with this group.',
+        'customer-associate' => ':name can not be deleted because customer is associated with this group.',
         'currency-delete-error' => 'This currency is set as channel base currency so it can not be deleted.',
         'upload-success' => ':name uploaded successfully.',
         'delete-category-root' => 'Cannot delete the root category',
@@ -578,7 +578,7 @@ return [
             'inventory' => 'Inventory',
             'stock-options' => 'Stock Options',
             'allow-backorders' => 'Allow Backorders',
-            'audience' => 'Audience',
+            'customer' => 'Audience',
             'settings' => 'Settings',
             'address' => 'Address',
             'street-lines' => 'Lines in a Street Address',

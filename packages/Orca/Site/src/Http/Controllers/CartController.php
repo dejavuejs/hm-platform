@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Event;
 use Cart;
 
 /**
- * Cart controller for the audience and guest users for adding and
+ * Cart controller for the customer and guest users for adding and
  * removing the products in the cart.
  *
  * @author  Prashant Singh <>
@@ -28,7 +28,7 @@ class CartController extends Controller
      * @param Array $_config
      * @param $cart
      * @param $cartItem
-     * @param $audience
+     * @param $customer
      * @param $product
      * @param $productView
      */
@@ -38,7 +38,7 @@ class CartController extends Controller
 
     protected $cartItem;
 
-    protected $audience;
+    protected $customer;
 
     protected $product;
 
@@ -54,15 +54,15 @@ class CartController extends Controller
     public function __construct(
         CartRepository $cart,
         CartItemRepository $cartItem,
-        AudienceRepository $audience,
+        AudienceRepository $customer,
         ProductRepository $product,
         WishlistRepository $wishlist
     )
     {
 
-        $this->middleware('audience')->only(['moveToWishlist']);
+        $this->middleware('customer')->only(['moveToWishlist']);
 
-        $this->audience = $audience;
+        $this->customer = $customer;
 
         $this->cart = $cart;
 
@@ -104,11 +104,11 @@ class CartController extends Controller
             if ($result) {
                 session()->flash('success', trans('site::app.checkout.cart.item.success'));
 
-                if (auth()->guard('audience')->user()) {
-                    $audience = auth()->guard('audience')->user();
+                if (auth()->guard('customer')->user()) {
+                    $customer = auth()->guard('customer')->user();
 
-                    if (count($audience->wishlist_items)) {
-                        foreach ($audience->wishlist_items as $wishlist) {
+                    if (count($customer->wishlist_items)) {
+                        foreach ($customer->wishlist_items as $wishlist) {
                             if ($wishlist->product_id == $id) {
                                 $this->wishlist->delete($wishlist->id);
                             }
@@ -238,7 +238,7 @@ class CartController extends Controller
 
     /**
      * Function to move a already added product to wishlist
-     * will run only on audience authentication.
+     * will run only on customer authentication.
      *
      * @param instance cartItem $id
      */

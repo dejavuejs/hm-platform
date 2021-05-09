@@ -21,7 +21,7 @@
     @extend %menu-properties;
     background-image: url("../images/Icon-Catalog.svg");
 }
-.audience-icon {
+.customer-icon {
     @extend %menu-properties;
     background-image: url("../images/Icon-Customers.svg");
 }
@@ -249,7 +249,7 @@
         background-image: url("../images/Icon-Catalog-Active.svg");
     }
 
-    .audience-icon {
+    .customer-icon {
         background-image: url("../images/Icon-Customers-Active.svg");
     }
 
@@ -284,7 +284,7 @@
         background-image: url("../images/Icon-Dashboard-Active.svg");
     }
 
-    &.audience-icon {
+    &.customer-icon {
         background-image: url("../images/Icon-Audiences-Active.svg");
     }
 

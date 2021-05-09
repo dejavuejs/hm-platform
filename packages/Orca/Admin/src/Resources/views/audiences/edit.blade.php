@@ -1,27 +1,27 @@
 @extends('admin::layouts.content')
 
 @section('page_title')
-    {{ __('admin::app.audiences.audiences.edit-title') }}
+    {{ __('admin::app.customers.customers.edit-title') }}
 @stop
 
 @section('content')
     <div class="content">
-        {!! view_render_event('orca.admin.audience.edit.before', ['audience' => $audience]) !!}
+        {!! view_render_event('orca.admin.customer.edit.before', ['customer' => $customer]) !!}
 
-        <form method="POST" action="{{ route('admin.audience.update', $audience->id) }}">
+        <form method="POST" action="{{ route('admin.customer.update', $customer->id) }}">
 
             <div class="page-header">
                 <div class="page-title">
                     <h1>
                         <i class="icon angle-left-icon back-link" onclick="history.length > 1 ? history.go(-1) : window.location = '{{ url('/admin/dashboard') }}';"></i>
 
-                        {{ __('admin::app.audiences.audiences.title') }}
+                        {{ __('admin::app.customers.customers.title') }}
                     </h1>
                 </div>
 
                 <div class="page-action fixed-action">
                     <button type="submit" class="btn btn-lg btn-primary">
-                        {{ __('admin::app.audiences.audiences.save-btn-title') }}
+                        {{ __('admin::app.customers.customers.save-btn-title') }}
                     </button>
                 </div>
             </div>
@@ -37,65 +37,65 @@
                         <div slot="body">
 
                             <div class="control-group" :class="[errors.has('first_name') ? 'has-error' : '']">
-                                <label for="first_name" class="required"> {{ __('admin::app.audiences.audiences.first_name') }}</label>
-                                <input type="text"  class="control" name="first_name" v-validate="'required'" value="{{$audience->first_name}}"
-                                data-vv-as="&quot;{{ __('site::app.audience.signup-form.firstname') }}&quot;"/>
+                                <label for="first_name" class="required"> {{ __('admin::app.customers.customers.first_name') }}</label>
+                                <input type="text"  class="control" name="first_name" v-validate="'required'" value="{{$customer->first_name}}"
+                                data-vv-as="&quot;{{ __('site::app.customer.signup-form.firstname') }}&quot;"/>
                                 <span class="control-error" v-if="errors.has('first_name')">@{{ errors.first('first_name') }}</span>
                             </div>
 
                             <div class="control-group" :class="[errors.has('last_name') ? 'has-error' : '']">
-                                <label for="last_name" class="required"> {{ __('admin::app.audiences.audiences.last_name') }}</label>
-                                <input type="text"  class="control"  name="last_name"   v-validate="'required'" value="{{$audience->last_name}}" data-vv-as="&quot;{{ __('site::app.audience.signup-form.lastname') }}&quot;">
+                                <label for="last_name" class="required"> {{ __('admin::app.customers.customers.last_name') }}</label>
+                                <input type="text"  class="control"  name="last_name"   v-validate="'required'" value="{{$customer->last_name}}" data-vv-as="&quot;{{ __('site::app.customer.signup-form.lastname') }}&quot;">
                                 <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
                             </div>
 
                             <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
-                                <label for="email" class="required"> {{ __('admin::app.audiences.audiences.email') }}</label>
-                                <input type="email"  class="control"  name="email" v-validate="'required|email'" value="{{$audience->email}}" data-vv-as="&quot;{{ __('site::app.audience.signup-form.email') }}&quot;">
+                                <label for="email" class="required"> {{ __('admin::app.customers.customers.email') }}</label>
+                                <input type="email"  class="control"  name="email" v-validate="'required|email'" value="{{$customer->email}}" data-vv-as="&quot;{{ __('site::app.customer.signup-form.email') }}&quot;">
                                 <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
                             </div>
 
                             <div class="control-group">
-                                <label for="gender" class="required">{{ __('admin::app.audiences.audiences.gender') }}</label>
-                                <select name="gender" class="control" value="{{ $audience->gender }}" v-validate="'required'" data-vv-as="&quot;{{ __('site::app.audiences.audiences.gender') }}&quot;">
-                                    <option value="Male" {{ $audience->gender == "Male" ? 'selected' : '' }}>{{ __('admin::app.audiences.audiences.male') }}</option>
-                                    <option value="Female" {{ $audience->gender == "Female" ? 'selected' : '' }}>{{ __('admin::app.audiences.audiences.female') }}</option>
+                                <label for="gender" class="required">{{ __('admin::app.customers.customers.gender') }}</label>
+                                <select name="gender" class="control" value="{{ $customer->gender }}" v-validate="'required'" data-vv-as="&quot;{{ __('site::app.customers.customers.gender') }}&quot;">
+                                    <option value="Male" {{ $customer->gender == "Male" ? 'selected' : '' }}>{{ __('admin::app.customers.customers.male') }}</option>
+                                    <option value="Female" {{ $customer->gender == "Female" ? 'selected' : '' }}>{{ __('admin::app.customers.customers.female') }}</option>
                                 </select>
                                 <span class="control-error" v-if="errors.has('gender')">@{{ errors.first('gender') }}</span>
                             </div>
 
                             <div class="control-group">
-                                <label for="status" class="required">{{ __('admin::app.audiences.audiences.status') }}</label>
-                                <select name="status" class="control" value="{{ $audience->status }}" v-validate="'required'" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.status') }}&quot;">
-                                    <option value="1" {{ $audience->status == "1" ? 'selected' : '' }}>{{ __('admin::app.audiences.audiences.active') }}</option>
-                                    <option value="0" {{ $audience->status == "0" ? 'selected' : '' }}>{{ __('admin::app.audiences.audiences.in-active') }}</option>
+                                <label for="status" class="required">{{ __('admin::app.customers.customers.status') }}</label>
+                                <select name="status" class="control" value="{{ $customer->status }}" v-validate="'required'" data-vv-as="&quot;{{ __('admin::app.customers.customers.status') }}&quot;">
+                                    <option value="1" {{ $customer->status == "1" ? 'selected' : '' }}>{{ __('admin::app.customers.customers.active') }}</option>
+                                    <option value="0" {{ $customer->status == "0" ? 'selected' : '' }}>{{ __('admin::app.customers.customers.in-active') }}</option>
                                 </select>
                                 <span class="control-error" v-if="errors.has('status')">@{{ errors.first('status') }}</span>
                             </div>
 
                             <div class="control-group" :class="[errors.has('date_of_birth') ? 'has-error' : '']">
-                                <label for="dob">{{ __('admin::app.audiences.audiences.date_of_birth') }}</label>
-                                <input type="date" class="control" name="date_of_birth" value="{{ $audience->date_of_birth }}" v-validate="" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.date_of_birth') }}&quot;">
+                                <label for="dob">{{ __('admin::app.customers.customers.date_of_birth') }}</label>
+                                <input type="date" class="control" name="date_of_birth" value="{{ $customer->date_of_birth }}" v-validate="" data-vv-as="&quot;{{ __('admin::app.customers.customers.date_of_birth') }}&quot;">
                                 <span class="control-error" v-if="errors.has('date_of_birth')">@{{ errors.first('date_of_birth') }}</span>
                             </div>
 
                             <div class="control-group" :class="[errors.has('phone') ? 'has-error' : '']">
-                                <label for="phone">{{ __('admin::app.audiences.audiences.phone') }}</label>
-                                <input type="text" class="control" name="phone"  value="{{ $audience->phone }}" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.phone') }}&quot;">
+                                <label for="phone">{{ __('admin::app.customers.customers.phone') }}</label>
+                                <input type="text" class="control" name="phone"  value="{{ $customer->phone }}" data-vv-as="&quot;{{ __('admin::app.customers.customers.phone') }}&quot;">
                                 <span class="control-error" v-if="errors.has('phone')">@{{ errors.first('phone') }}</span>
                             </div>
 
                             <div class="control-group">
-                                <label for="audienceGroup" >{{ __('admin::app.audiences.audiences.audience_group') }}</label>
+                                <label for="customerGroup" >{{ __('admin::app.customers.customers.customer_group') }}</label>
 
-                                @if (! is_null($audience->audience_group_id))
-                                    <?php $selectedAudienceOption = $audience->group->id ?>
+                                @if (! is_null($customer->customer_group_id))
+                                    <?php $selectedAudienceOption = $customer->group->id ?>
                                 @else
                                     <?php $selectedAudienceOption = '' ?>
                                 @endif
 
-                                <select  class="control" name="audience_group_id">
-                                    @foreach ($audienceGroup as $group)
+                                <select  class="control" name="customer_group_id">
+                                    @foreach ($customerGroup as $group)
                                     <option value="{{ $group->id }}" {{ $selectedAudienceOption == $group->id ? 'selected' : '' }}>
                                         {{ $group->name}}
                                     </option>
@@ -104,15 +104,15 @@
                             </div>
 
                             <div class="control-group" :class="[errors.has('channel_id') ? 'has-error' : '']">
-                                <label for="channel" >{{ __('admin::app.audiences.audiences.channel_name') }}</label>
+                                <label for="channel" >{{ __('admin::app.customers.customers.channel_name') }}</label>
 
-                                @if (! is_null($audience->channel_id))
-                                    <?php $selectedChannelOption = $audience->channel_id ?>
+                                @if (! is_null($customer->channel_id))
+                                    <?php $selectedChannelOption = $customer->channel_id ?>
                                 @else
-                                    <?php $selectedChannelOption = $audience->channel_id ?>
+                                    <?php $selectedChannelOption = $customer->channel_id ?>
                                 @endif
 
-                                <select  class="control" name="channel_id" v-validate="'required'" data-vv-as="&quot;{{ __('site::app.audiences.audiences.channel_name') }}&quot;">
+                                <select  class="control" name="channel_id" v-validate="'required'" data-vv-as="&quot;{{ __('site::app.customers.customers.channel_name') }}&quot;">
                                     @foreach ($channelName as $channel)
                                     <option value="{{ $channel->id }}" {{ $selectedChannelOption == $channel->id ? 'selected' : '' }}>
                                         {{ $channel->name}}
@@ -129,6 +129,6 @@
             </div>
         </form>
 
-        {!! view_render_event('orca.admin.audience.edit.after', ['audience' => $audience]) !!}
+        {!! view_render_event('orca.admin.customer.edit.after', ['customer' => $customer]) !!}
     </div>
 @stop

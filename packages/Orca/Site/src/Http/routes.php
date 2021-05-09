@@ -33,112 +33,112 @@ Route::group(['middleware' => ['web', 'locale', 'theme', 'currency']], function 
         'view' => 'site::test'
     ])->name('get.states');
 
-    //audience routes starts here
-    Route::prefix('audience')->group(function () {
+    //customer routes starts here
+    Route::prefix('customer')->group(function () {
         // forgot Password Routes
         // Forgot Password Form Show
         Route::get('/forgot-password', 'Orca\Audience\Http\Controllers\ForgotPasswordController@create')->defaults('_config', [
-            'view' => 'site::audiences.signup.forgot-password'
-        ])->name('audience.forgot-password.create');
+            'view' => 'site::customers.signup.forgot-password'
+        ])->name('customer.forgot-password.create');
 
         // Forgot Password Form Store
-        Route::post('/forgot-password', 'Orca\Audience\Http\Controllers\ForgotPasswordController@store')->name('audience.forgot-password.store');
+        Route::post('/forgot-password', 'Orca\Audience\Http\Controllers\ForgotPasswordController@store')->name('customer.forgot-password.store');
 
         // Reset Password Form Show
         Route::get('/reset-password/{token}', 'Orca\Audience\Http\Controllers\ResetPasswordController@create')->defaults('_config', [
-            'view' => 'site::audiences.signup.reset-password'
-        ])->name('audience.reset-password.create');
+            'view' => 'site::customers.signup.reset-password'
+        ])->name('customer.reset-password.create');
 
         // Reset Password Form Store
         Route::post('/reset-password', 'Orca\Audience\Http\Controllers\ResetPasswordController@store')->defaults('_config', [
-            'redirect' => 'audience.profile.index'
-        ])->name('audience.reset-password.store');
+            'redirect' => 'customer.profile.index'
+        ])->name('customer.reset-password.store');
 
         // Login Routes
         // Login form show
         Route::get('login', 'Orca\Audience\Http\Controllers\SessionController@show')->defaults('_config', [
-            'view' => 'site::audiences.session.index',
-        ])->name('audience.session.index');
+            'view' => 'site::customers.session.index',
+        ])->name('customer.session.index');
 
         // Login form store
         Route::post('login', 'Orca\Audience\Http\Controllers\SessionController@create')->defaults('_config', [
-            'redirect' => 'audience.profile.index'
-        ])->name('audience.session.create');
+            'redirect' => 'customer.profile.index'
+        ])->name('customer.session.create');
 
         // Registration Routes
         //registration form show
         Route::get('register', 'Orca\Audience\Http\Controllers\RegistrationController@show')->defaults('_config', [
-            'view' => 'site::audiences.signup.index'
-        ])->name('audience.register.index');
+            'view' => 'site::customers.signup.index'
+        ])->name('customer.register.index');
 
         //registration form store
         Route::post('register', 'Orca\Audience\Http\Controllers\RegistrationController@create')->defaults('_config', [
-            'redirect' => 'audience.session.index',
-        ])->name('audience.register.create');
+            'redirect' => 'customer.session.index',
+        ])->name('customer.register.create');
 
         //verify account
-        Route::get('/verify-account/{token}', 'Orca\Audience\Http\Controllers\RegistrationController@verifyAccount')->name('audience.verify');
+        Route::get('/verify-account/{token}', 'Orca\Audience\Http\Controllers\RegistrationController@verifyAccount')->name('customer.verify');
 
         //resend verification email
-        Route::get('/resend/verification/{email}', 'Orca\Audience\Http\Controllers\RegistrationController@resendVerificationEmail')->name('audience.resend.verification-email');
+        Route::get('/resend/verification/{email}', 'Orca\Audience\Http\Controllers\RegistrationController@resendVerificationEmail')->name('customer.resend.verification-email');
 
         // Auth Routes
-        Route::group(['middleware' => ['audience']], function () {
+        Route::group(['middleware' => ['customer']], function () {
 
             //Audience logout
             Route::get('logout', 'Orca\Audience\Http\Controllers\SessionController@destroy')->defaults('_config', [
-                'redirect' => 'audience.session.index'
-            ])->name('audience.session.destroy');
+                'redirect' => 'customer.session.index'
+            ])->name('customer.session.destroy');
 
-            //audience account
+            //customer account
             Route::prefix('account')->group(function () {
                 //Audience Dashboard Route
                 Route::get('index', 'Orca\Audience\Http\Controllers\AccountController@index')->defaults('_config', [
-                    'view' => 'site::audiences.account.index'
-                ])->name('audience.account.index');
+                    'view' => 'site::customers.account.index'
+                ])->name('customer.account.index');
 
                 //Audience Profile Show
                 Route::get('profile', 'Orca\Audience\Http\Controllers\AudienceController@index')->defaults('_config', [
-                    'view' => 'site::audiences.account.profile.index'
-                ])->name('audience.profile.index');
+                    'view' => 'site::customers.account.profile.index'
+                ])->name('customer.profile.index');
 
                 //Audience Profile Edit Form Show
                 Route::get('profile/edit', 'Orca\Audience\Http\Controllers\AudienceController@edit')->defaults('_config', [
-                    'view' => 'site::audiences.account.profile.edit'
-                ])->name('audience.profile.edit');
+                    'view' => 'site::customers.account.profile.edit'
+                ])->name('customer.profile.edit');
 
                 //Audience Profile Edit Form Store
                 Route::post('profile/edit', 'Orca\Audience\Http\Controllers\AudienceController@update')->defaults('_config', [
-                    'redirect' => 'audience.profile.index'
-                ])->name('audience.profile.update');
+                    'redirect' => 'customer.profile.index'
+                ])->name('customer.profile.update');
                 /*  Profile Routes Ends Here  */
 
                 /*    Routes for Addresses   */
                 //Audience Address Show
                 Route::get('addresses', 'Orca\Audience\Http\Controllers\AddressController@index')->defaults('_config', [
-                    'view' => 'site::audiences.account.address.index'
-                ])->name('audience.address.index');
+                    'view' => 'site::customers.account.address.index'
+                ])->name('customer.address.index');
 
                 //Audience Address Create Form Show
                 Route::get('addresses/create', 'Orca\Audience\Http\Controllers\AddressController@create')->defaults('_config', [
-                    'view' => 'site::audiences.account.address.create'
-                ])->name('audience.address.create');
+                    'view' => 'site::customers.account.address.create'
+                ])->name('customer.address.create');
 
                 //Audience Address Create Form Store
                 Route::post('addresses/create', 'Orca\Audience\Http\Controllers\AddressController@store')->defaults('_config', [
-                    'view' => 'site::audiences.account.address.address',
-                    'redirect' => 'audience.address.index'
-                ])->name('audience.address.store');
+                    'view' => 'site::customers.account.address.address',
+                    'redirect' => 'customer.address.index'
+                ])->name('customer.address.store');
 
                 //Audience Address Edit Form Show
                 Route::get('addresses/edit/{id}', 'Orca\Audience\Http\Controllers\AddressController@edit')->defaults('_config', [
-                    'view' => 'site::audiences.account.address.edit'
-                ])->name('audience.address.edit');
+                    'view' => 'site::customers.account.address.edit'
+                ])->name('customer.address.edit');
 
                 //Audience Address Edit Form Store
                 Route::put('addresses/edit/{id}', 'Orca\Audience\Http\Controllers\AddressController@update')->defaults('_config', [
-                    'redirect' => 'audience.address.index'
-                ])->name('audience.address.update');
+                    'redirect' => 'customer.address.index'
+                ])->name('customer.address.update');
 
                 //Audience Address Make Default
                 Route::get('addresses/default/{id}', 'Orca\Audience\Http\Controllers\AddressController@makeDefault')->name('make.default.address');
@@ -149,22 +149,22 @@ Route::group(['middleware' => ['web', 'locale', 'theme', 'currency']], function 
                 /* Reviews route */
                 //Audience reviews
                 Route::get('reviews', 'Orca\Audience\Http\Controllers\AudienceController@reviews')->defaults('_config', [
-                    'view' => 'site::audiences.account.reviews.index'
-                ])->name('audience.reviews.index');
+                    'view' => 'site::customers.account.reviews.index'
+                ])->name('customer.reviews.index');
 
                 //Audience review delete
                 Route::get('reviews/delete/{id}', 'Orca\Site\Http\Controllers\ReviewController@destroy')->defaults('_config', [
-                    'redirect' => 'audience.reviews.index'
-                ])->name('audience.review.delete');
+                    'redirect' => 'customer.reviews.index'
+                ])->name('customer.review.delete');
 
                 //Audience all review delete
                 Route::get('reviews/all-delete', 'Orca\Site\Http\Controllers\ReviewController@deleteAll')->defaults('_config', [
-                    'redirect' => 'audience.reviews.index'
-                ])->name('audience.review.deleteall');
+                    'redirect' => 'customer.reviews.index'
+                ])->name('customer.review.deleteall');
             });
         });
     });
-    //audience routes end here
+    //customer routes end here
 
     Route::get('pages/{slug}', 'Orca\CMS\Http\Controllers\Site\PagePresenterController@presenter')->name('Site.cms.page');
 

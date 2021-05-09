@@ -24,7 +24,7 @@ return [
         'categories' => 'دسته بندی ها',
         'attributes' => 'ویژگی ها',
         'attribute-families' => 'ویژگی خانواده',
-        'audiences' => 'مشتریان',
+        'customers' => 'مشتریان',
         'groups' => 'گروه ها',
         'reviews' => 'بررسی ها',
         'newsletter-subscriptions' => 'اشتراک های خبرنامه',
@@ -56,7 +56,7 @@ return [
         'categories' => 'دسته بندی ها',
         'attributes' => 'ویژگی ها',
         'attribute-families' => 'ویژگی خانواده',
-        'audiences' => 'مشتریان',
+        'customers' => 'مشتریان',
         'groups' => 'گروه ها',
         'reviews' => 'بررسی ها',
         'newsletter-subscriptions' => 'اشتراک های خبرنامه',
@@ -84,7 +84,7 @@ return [
         'title' => 'داشبورد',
         'from' => 'از',
         'to' => 'به',
-        'total-audiences' => 'همه مشتریان',
+        'total-customers' => 'همه مشتریان',
         'total-orders' => 'همه سفارشات',
         'total-sale' => 'مجموع فروش',
         'average-sale' => 'میانگین فروش',
@@ -95,7 +95,7 @@ return [
         'product-count' => ':count تا محصول',
         'top-selling-products' => 'محصولات فروش بالا',
         'sale-count' => ':count تا فروش',
-        'audience-with-most-sales' => 'مشتری با بیش‌ترین فروش',
+        'customer-with-most-sales' => 'مشتری با بیش‌ترین فروش',
         'order-count' => ':count تا سفارش',
         'revenue' => 'درآمد :total',
         'stock-threshold' => 'تعداد کالای موجود',
@@ -266,7 +266,7 @@ return [
             'order-date' => 'تاریخ سفارش',
             'order-status' => 'وضعیت سفارش',
             'channel' => 'کانال',
-            'audience-name' => 'نام مشتری',
+            'customer-name' => 'نام مشتری',
             'email' => 'پست الکترونیگ',
             'contact-number' => 'شماره تماس',
             'account-info' => 'اطلاعات حساب',
@@ -311,7 +311,7 @@ return [
             'invoice-id' => 'شناسه صورت حساب',
             'date' => 'تاریخ صورت حساب',
             'order-id' => 'شناسه سفارش',
-            'audience-name' => 'نام مشتیر',
+            'customer-name' => 'نام مشتیر',
             'status' => 'وضعیت',
             'amount' => 'میزان',
             'action' => 'عملیات',
@@ -335,7 +335,7 @@ return [
             'date' => 'تاریخ حمل و نقل',
             'order-id' => 'شناسه سفارش',
             'order-date' => 'تاریخ سفارش',
-            'audience-name' => 'نام مشتری',
+            'customer-name' => 'نام مشتری',
             'total-qty' => 'کل مقدار',
             'action' => 'عملیات',
             'add-title' => 'ایجاد حمل و نقل',
@@ -725,7 +725,7 @@ return [
         ]
     ],
 
-    'audiences' => [
+    'customers' => [
         'groups' =>[
             'add-title' => 'افزودن گروه',
             'edit-title' => 'ویرایش گروه',
@@ -744,7 +744,7 @@ return [
             'help-title' => 'توجه را به این مشتری اضافه کنید'
         ],
 
-        'audiences' => [
+        'customers' => [
             'add-title' => 'افزودن مشتری',
             'edit-title' => 'ویرایش مشتری',
             'title' => 'مشتریان',
@@ -754,7 +754,7 @@ return [
             'email' => 'پست الکترونیک',
             'date_of_birth' => 'تاریخ تولد',
             'phone' => 'موبایل',
-            'audience_group' => 'گروه مشتری',
+            'customer_group' => 'گروه مشتری',
             'save-btn-title' => 'ذخیره مشتری',
             'channel_name' => 'نام کانال',
             'state' => 'استان',
@@ -945,7 +945,7 @@ return [
         'user-define-error' => 'نمی توان :name سیستم را حذف کرد.',
         'attribute-error' => ':name در محصولات قابل تنظیم استفاده می شود.',
         'attribute-product-error' => ':name در محصولات استفاده می شود.',
-        'audience-associate' => ':name نمی توان حذف کرد زیرا مشتری با این گروه در ارتباط است.',
+        'customer-associate' => ':name نمی توان حذف کرد زیرا مشتری با این گروه در ارتباط است.',
         'currency-delete-error' => 'این ارز به عنوان ارز پایه کانال تنظیم شده است بنابراین نمی توان آن را حذف کرد.',
         'upload-success' => ':name با موفقیت بارگذاری شد.',
         'delete-category-root' => 'نمی توان دسته اصلی را حذف کرد',
@@ -968,7 +968,7 @@ return [
             'inventory' => 'موجودی',
             'stock-options' => 'گزینه های موجودی',
             'allow-backorders' => 'اجازه به دره های پستی',
-            'audience' => 'مشتری',
+            'customer' => 'مشتری',
             'settings' => 'تنظیمات',
             'address' => 'آدرس',
             'street-lines' => 'تعداد خطوط در خیابان',

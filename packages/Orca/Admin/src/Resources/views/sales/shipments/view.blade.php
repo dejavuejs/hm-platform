@@ -83,7 +83,7 @@
                             <div class="section-content">
                                 <div class="row">
                                     <span class="title">
-                                        {{ __('admin::app.sales.orders.audience-name') }}
+                                        {{ __('admin::app.sales.orders.customer-name') }}
                                     </span>
 
                                     <span class="value">

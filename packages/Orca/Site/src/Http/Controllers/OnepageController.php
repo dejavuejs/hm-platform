@@ -13,7 +13,7 @@ use Orca\Discount\Helpers\Cart\NonCouponAbleRule as NonCoupon;
 use Orca\Discount\Helpers\Cart\ValidatesDiscount;
 
 /**
- * Chekout controller for the audience and guest for placing order
+ * Chekout controller for the customer and guest for placing order
  *
  * @author   <>
  * @author  Prashant Singh <>
@@ -109,7 +109,7 @@ class OnepageController extends Controller
     }
 
     /**
-     * Saves audience address.
+     * Saves customer address.
      *
      * @param  \Orca\Checkout\Http\Requests\AudienceAddressForm $request
      * @return \Illuminate\Http\Response

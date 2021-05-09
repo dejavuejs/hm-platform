@@ -40,8 +40,8 @@
             <div class="product-hero-image" id="product-hero-image">
                 <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl"/>
 
-                @auth('audience')
-                    <a class="add-to-wishlist" href="{{ route('audience.wishlist.add', $product->product_id) }}">
+                @auth('customer')
+                    <a class="add-to-wishlist" href="{{ route('customer.wishlist.add', $product->product_id) }}">
                     </a>
                 @endauth
             </div>

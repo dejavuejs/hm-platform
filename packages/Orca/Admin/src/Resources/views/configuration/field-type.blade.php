@@ -292,7 +292,7 @@
 <script type="text/x-template" id="country-template">
 
     <div>
-        <select type="text" v-validate="validations" class="control" :id="name" :name="name" v-model="country" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.country') }}&quot;" @change="sendCountryCode">
+        <select type="text" v-validate="validations" class="control" :id="name" :name="name" v-model="country" data-vv-as="&quot;{{ __('admin::app.customers.customers.country') }}&quot;" @change="sendCountryCode">
             <option value=""></option>
 
             @foreach (core()->countries() as $country)
@@ -336,11 +336,11 @@
 <script type="text/x-template" id="state-template">
 
     <div>
-        <input type="text" v-validate="'required'" v-if="!haveStates()" class="control" v-model="state" :id="name" :name="name" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.state') }}&quot;"/>
+        <input type="text" v-validate="'required'" v-if="!haveStates()" class="control" v-model="state" :id="name" :name="name" data-vv-as="&quot;{{ __('admin::app.customers.customers.state') }}&quot;"/>
 
-        <select v-validate="'required'" v-if="haveStates()" class="control" v-model="state" :id="name" :name="name" data-vv-as="&quot;{{ __('admin::app.audiences.audiences.state') }}&quot;" >
+        <select v-validate="'required'" v-if="haveStates()" class="control" v-model="state" :id="name" :name="name" data-vv-as="&quot;{{ __('admin::app.customers.customers.state') }}&quot;" >
 
-            <option value="">{{ __('admin::app.audiences.audiences.select-state') }}</option>
+            <option value="">{{ __('admin::app.customers.customers.select-state') }}</option>
 
             <option v-for='(state, index) in countryStates[country]' :value="state.code">
                 @{{ state.default_name }}

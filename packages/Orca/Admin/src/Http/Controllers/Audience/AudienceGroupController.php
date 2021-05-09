@@ -27,21 +27,21 @@ class AudienceGroupController extends Controller
      *
      * @var array
     */
-    protected $audienceGroup;
+    protected $customerGroup;
 
      /**
      * Create a new controller instance.
      *
-     * @param \Orca\Audience\Repositories\AudienceGroupRepository as audienceGroup;
+     * @param \Orca\Audience\Repositories\AudienceGroupRepository as customerGroup;
      * @return void
      */
-    public function __construct(AudienceGroup $audienceGroup)
+    public function __construct(AudienceGroup $customerGroup)
     {
         $this->_config = request('_config');
 
         $this->middleware('admin');
 
-        $this->audienceGroup = $audienceGroup;
+        $this->customerGroup = $customerGroup;
     }
 
     /**
@@ -72,7 +72,7 @@ class AudienceGroupController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'code' => ['required', 'unique:audience_groups,code', new \Orca\Core\Contracts\Validations\Code],
+            'code' => ['required', 'unique:customer_groups,code', new \Orca\Core\Contracts\Validations\Code],
             'name' => 'required',
         ]);
 
@@ -80,7 +80,7 @@ class AudienceGroupController extends Controller
 
         $data['is_user_defined'] = 1;
 
-        $this->audienceGroup->create($data);
+        $this->customerGroup->create($data);
 
         session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Audience Group']));
 
@@ -95,7 +95,7 @@ class AudienceGroupController extends Controller
      */
     public function edit($id)
     {
-        $group = $this->audienceGroup->findOrFail($id);
+        $group = $this->customerGroup->findOrFail($id);
 
         return view($this->_config['view'], compact('group'));
     }
@@ -110,11 +110,11 @@ class AudienceGroupController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-            'code' => ['required', 'unique:audience_groups,code,' . $id, new \Orca\Core\Contracts\Validations\Code],
+            'code' => ['required', 'unique:customer_groups,code,' . $id, new \Orca\Core\Contracts\Validations\Code],
             'name' => 'required',
         ]);
 
-        $this->audienceGroup->update(request()->all(), $id);
+        $this->customerGroup->update(request()->all(), $id);
 
         session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Audience Group']));
 
@@ -129,15 +129,15 @@ class AudienceGroupController extends Controller
      */
     public function destroy($id)
     {
-        $audienceGroup = $this->audienceGroup->findOrFail($id);
+        $customerGroup = $this->customerGroup->findOrFail($id);
 
-        if ($audienceGroup->is_user_defined == 0) {
-            session()->flash('warning', trans('admin::app.audiences.audiences.group-default'));
-        } else if (count($audienceGroup->audience) > 0) {
-            session()->flash('warning', trans('admin::app.response.audience-associate', ['name' => 'Audience Group']));
+        if ($customerGroup->is_user_defined == 0) {
+            session()->flash('warning', trans('admin::app.customers.customers.group-default'));
+        } else if (count($customerGroup->customer) > 0) {
+            session()->flash('warning', trans('admin::app.response.customer-associate', ['name' => 'Audience Group']));
         } else {
             try {
-                $this->audienceGroup->delete($id);
+                $this->customerGroup->delete($id);
 
                 session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Audience Group']));
 

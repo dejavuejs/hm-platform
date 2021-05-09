@@ -1,7 +1,7 @@
 @extends('admin::layouts.content')
 
 @section('page_title')
-    {{ __('admin::app.audiences.audiences.title') }}
+    {{ __('admin::app.customers.customers.title') }}
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h1>{{ __('admin::app.audiences.audiences.title') }}</h1>
+                <h1>{{ __('admin::app.customers.customers.title') }}</h1>
             </div>
             <div class="page-action">
                 <div class="export-import" @click="showModal('downloadDataGrid')">
@@ -19,16 +19,16 @@
                     </span>
                 </div>
 
-                <a href="{{ route('admin.audience.create') }}" class="btn btn-lg btn-primary">
-                    {{ __('admin::app.audiences.audiences.add-title') }}
+                <a href="{{ route('admin.customer.create') }}" class="btn btn-lg btn-primary">
+                    {{ __('admin::app.customers.customers.add-title') }}
                 </a>
             </div>
         </div>
 
         <div class="page-content">
-            @inject('audienceGrid','Orca\Admin\DataGrids\AudienceDataGrid')
+            @inject('customerGrid','Orca\Admin\DataGrids\AudienceDataGrid')
 
-            {!! $audienceGrid->render() !!}
+            {!! $customerGrid->render() !!}
         </div>
     </div>
 
@@ -42,6 +42,6 @@
 @stop
 
 @push('scripts')
-    @include('admin::export.export', ['gridName' => $audienceGrid])
+    @include('admin::export.export', ['gridName' => $customerGrid])
 @endpush
 

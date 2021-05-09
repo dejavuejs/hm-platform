@@ -28,7 +28,7 @@
             {!! DbView::make(core()->getCurrentChannel())->field('footer_content')->render() !!}
 
             <div class="list-container">
-                @if(core()->getConfigData('audience.settings.newsletter.subscription'))
+                @if(core()->getConfigData('customer.settings.newsletter.subscription'))
                     <span class="list-heading">{{ __('site::app.footer.subscribe-newsletter') }}</span>
                     <div class="form-container">
                         <form action="{{ route('Site.subscribe') }}">

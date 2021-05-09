@@ -165,7 +165,7 @@ class UserController extends Controller
             Event::dispatch('user.admin.delete.before', $id);
 
             if (auth()->guard('admin')->user()->id == $id) {
-                return view('admin::audiences.confirm-password');
+                return view('admin::customers.confirm-password');
             }
 
             try {

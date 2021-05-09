@@ -22,7 +22,7 @@ return [
         'categories' => 'الفئات',
         'attributes' => 'الصفات',
         'attribute-families' => 'وصف الأسر',
-        'audiences' => 'زبائن',
+        'customers' => 'زبائن',
         'groups' => 'المجموعات',
         'reviews' => 'باء-الاستعراضات',
         'newsletter-subscriptions' => 'الاشتراك في الرسالة الإخبارية',
@@ -51,7 +51,7 @@ return [
         'categories' => 'الفئات',
         'attributes' => 'الصفات',
         'attribute-families' => 'وصف الأسر',
-        'audiences' => 'زبائن',
+        'customers' => 'زبائن',
         'groups' => 'المجموعات',
         'reviews' => 'باء-الاستعراضات',
         'newsletter-subscriptions' => 'الاشتراك في الرسالة الإخبارية',
@@ -76,7 +76,7 @@ return [
         'title' => 'لوحة العدادات',
         'from' => 'من',
         'to' => 'إلى',
-        'total-audiences' => 'مجموع الزبائن',
+        'total-customers' => 'مجموع الزبائن',
         'total-orders' => 'مجموع الطلبات',
         'total-sale' => 'مجموع المبيعات',
         'average-sale' => 'متوسط مبيعات الطلبات',
@@ -87,7 +87,7 @@ return [
         'product-count' => ':count المنتجات',
         'top-selling-products' => 'Top Selling Products',
         'sale-count' => ':count المبيعات',
-        'audience-with-most-sales' => 'زبون لديه معظم المبيعات',
+        'customer-with-most-sales' => 'زبون لديه معظم المبيعات',
         'order-count' => ':count الأوامر',
         'revenue' => 'الإيرادات :total',
         'stock-threshold' => 'عتبة المخزون',
@@ -239,7 +239,7 @@ return [
             'order-date' => 'تاريخ الطلب',
             'order-status' => 'حالة الترتيب',
             'channel' => 'القناة',
-            'audience-name' => 'Audience Name',
+            'customer-name' => 'Audience Name',
             'email' => 'Email',
             'contact-number' => 'Contact Number',
             'account-info' => 'معلومات الحساب',
@@ -284,7 +284,7 @@ return [
             'invoice-id' => 'Invoice Id',
             'date' => 'Invoice Date',
             'order-id' => 'Order Id',
-            'audience-name' => 'Audience Name',
+            'customer-name' => 'Audience Name',
             'status' => 'الحالة',
             'amount' => 'المبلغ',
             'action' => 'الإجراء',
@@ -307,7 +307,7 @@ return [
             'date' => 'Shipment Date',
             'order-id' => 'Order Id',
             'order-date' => 'Order date',
-            'audience-name' => 'Audience Name',
+            'customer-name' => 'Audience Name',
             'total-qty' => 'Total Qty',
             'action' => 'الإجراء',
             'add-title' => 'أنشئ شحنة',
@@ -652,7 +652,7 @@ return [
             'atleast-one' => 'لا يستطيع حذف الأخير ضريبة معدل'
         ]
     ],
-    'audiences' => [
+    'customers' => [
         'groups' =>[
             'add-title' => 'أضف المجموعة',
             'edit-title' => 'حرر المجموعة',
@@ -664,7 +664,7 @@ return [
             'is_user_defined' => 'تعريف المستخدم',
             'yes' => 'نعم.'
         ],
-        'audiences' => [
+        'customers' => [
             'add-title' => 'أضف زبونا',
             'edit-title' => 'حرر الزبون',
             'title' => 'زبائن',
@@ -674,7 +674,7 @@ return [
             'email' => 'Email',
             'date_of_birth' => 'Date of Birth',
             'phone' => 'Phone',
-            'audience_group' => 'مجموعة العملاء',
+            'customer_group' => 'مجموعة العملاء',
             'save-btn-title' => 'احفظ الزبون',
             'channel_name' => 'Channel Name',
             'state' => 'State',
@@ -757,7 +757,7 @@ return [
         'user-define-error' => 'لا يستطيع حذف نظام :name',
         'attribute-error' => ':name is used in configurable products.',
         'attribute-product-error' => ':name is used in products.',
-        'audience-associate' => ':name can not be deleted because audience is associated with this group.',
+        'customer-associate' => ':name can not be deleted because customer is associated with this group.',
         'currency-delete-error' => 'يتم تعيين هذه العملة كعملة أساسية القناة لذلك لا يمكن حذفها.',
         'upload-success' => ':name uploaded successfully.',
         'delete-category-root' => 'لا يستطيع حذف الجذر الفئة',

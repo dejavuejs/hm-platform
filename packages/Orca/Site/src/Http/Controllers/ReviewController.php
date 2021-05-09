@@ -84,9 +84,9 @@ class ReviewController extends Controller
 
         $data = request()->all();
 
-        if (auth()->guard('audience')->user()) {
-            $data['audience_id'] = auth()->guard('audience')->user()->id;
-            $data['name'] = auth()->guard('audience')->user()->first_name .' ' . auth()->guard('audience')->user()->last_name;
+        if (auth()->guard('customer')->user()) {
+            $data['customer_id'] = auth()->guard('customer')->user()->id;
+            $data['name'] = auth()->guard('customer')->user()->first_name .' ' . auth()->guard('customer')->user()->last_name;
         }
 
         $data['status'] = 'pending';
@@ -121,7 +121,7 @@ class ReviewController extends Controller
     {
         $review = $this->productReview->findOneWhere([
             'id' => $id,
-            'audience_id' => auth()->guard('audience')->user()->id
+            'customer_id' => auth()->guard('customer')->user()->id
         ]);
 
         if (! $review)
@@ -140,7 +140,7 @@ class ReviewController extends Controller
      * @return Mixed Response & Boolean
     */
     public function deleteAll() {
-        $reviews = auth()->guard('audience')->user()->all_reviews;
+        $reviews = auth()->guard('customer')->user()->all_reviews;
 
         if ($reviews->count() > 0) {
             foreach ($reviews as $review) {

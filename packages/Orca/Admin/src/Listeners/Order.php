@@ -20,7 +20,7 @@ class Order {
     /**
      * @param mixed $order
      *
-     * Send new order Mail to the audience and admin
+     * Send new order Mail to the customer and admin
      */
     public function sendNewOrderMail($order)
     {
@@ -37,7 +37,7 @@ class Order {
     /**
      * @param mixed $invoice
      *
-     * Send new invoice mail to the audience
+     * Send new invoice mail to the customer
      */
     public function sendNewInvoiceMail($invoice)
     {
@@ -54,7 +54,7 @@ class Order {
     /**
      * @param mixed $shipment
      *
-     * Send new shipment mail to the audience
+     * Send new shipment mail to the customer
      */
     public function sendNewShipmentMail($shipment)
     {
@@ -73,7 +73,7 @@ class Order {
     /**
      * @param mixed $shipment
      *
-     * Send new shipment mail to the audience
+     * Send new shipment mail to the customer
      */
     public function updateProductInventory($order)
     {

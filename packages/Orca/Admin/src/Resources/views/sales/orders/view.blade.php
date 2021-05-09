@@ -94,11 +94,11 @@
                                     <div class="section-content">
                                         <div class="row">
                                             <span class="title">
-                                                {{ __('admin::app.sales.orders.audience-name') }}
+                                                {{ __('admin::app.sales.orders.customer-name') }}
                                             </span>
 
                                             <span class="value">
-                                                {{ $order->audience_full_name }}
+                                                {{ $order->customer_full_name }}
                                             </span>
                                         </div>
 
@@ -108,18 +108,18 @@
                                             </span>
 
                                             <span class="value">
-                                                {{ $order->audience_email }}
+                                                {{ $order->customer_email }}
                                             </span>
                                         </div>
 
-                                        @if (! is_null($order->audience))
+                                        @if (! is_null($order->customer))
                                             <div class="row">
                                                 <span class="title">
-                                                    {{ __('admin::app.audiences.audiences.audience_group') }}
+                                                    {{ __('admin::app.customers.customers.customer_group') }}
                                                 </span>
 
                                                 <span class="value">
-                                                    {{ $order->audience->group['name'] }}
+                                                    {{ $order->customer->group['name'] }}
                                                 </span>
                                             </div>
                                         @endif
@@ -362,7 +362,7 @@
                                     <th>{{ __('admin::app.sales.invoices.id') }}</th>
                                     <th>{{ __('admin::app.sales.invoices.date') }}</th>
                                     <th>{{ __('admin::app.sales.invoices.order-id') }}</th>
-                                    <th>{{ __('admin::app.sales.invoices.audience-name') }}</th>
+                                    <th>{{ __('admin::app.sales.invoices.customer-name') }}</th>
                                     <th>{{ __('admin::app.sales.invoices.status') }}</th>
                                     <th>{{ __('admin::app.sales.invoices.amount') }}</th>
                                     <th>{{ __('admin::app.sales.invoices.action') }}</th>
@@ -407,7 +407,7 @@
                                     <th>{{ __('admin::app.sales.shipments.date') }}</th>
                                     <th>{{ __('admin::app.sales.shipments.order-id') }}</th>
                                     <th>{{ __('admin::app.sales.shipments.order-date') }}</th>
-                                    <th>{{ __('admin::app.sales.shipments.audience-name') }}</th>
+                                    <th>{{ __('admin::app.sales.shipments.customer-name') }}</th>
                                     <th>{{ __('admin::app.sales.shipments.total-qty') }}</th>
                                     <th>{{ __('admin::app.sales.shipments.action') }}</th>
                                 </tr>
