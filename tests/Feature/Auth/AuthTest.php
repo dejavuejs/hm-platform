@@ -11,47 +11,47 @@ use App;
 use Faker\Generator as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Orca\Audience\Repositories\AudienceRepository as Audience;
+use Orca\Customer\Repositories\CustomerRepository as Customer;
 
 class AuthTest extends TestCase
 {
-    protected $audience;
+    protected $customer;
 
     /**
-     * To check if the audience can view the login page or not
+     * To check if the customer can view the login page or not
      *
      * @return void
      */
-    public function testAudienceLoginPage()
+    public function testCustomerLoginPage()
     {
         config(['app.url' => 'http://prashant.com']);
 
-        $response = $this->get('/audience/login');
+        $response = $this->get('/customer/login');
 
         $response->assertSuccessful();
 
-        $response->assertViewIs('shop::audiences.session.index');
+        $response->assertViewIs('shop::customers.session.index');
     }
 
-    public function testAudienceResgistrationPage()
+    public function testCustomerResgistrationPage()
     {
         config(['app.url' => 'http://prashant.com']);
 
-        $response = $this->get('/audience/register');
+        $response = $this->get('/customer/register');
 
         $response->assertSuccessful();
 
-        $response->assertViewIs('shop::audiences.signup.index');
+        $response->assertViewIs('shop::customers.signup.index');
     }
 
-    public function testAudienceRegistration() {
+    public function testCustomerRegistration() {
         $faker = \Faker\Factory::create();
 
-        $allAudiences = array();
+        $allCustomers = array();
 
-        $audiences = app(Audience::class);
+        $customers = app(Customer::class);
 
-        $created = $audiences->create([
+        $created = $customers->create([
             'first_name' => explode(' ', $faker->name)[0],
             'last_name' => explode(' ', $faker->name)[0],
             'channel_id' => core()->getCurrentChannel()->id,
@@ -65,32 +65,32 @@ class AuthTest extends TestCase
         $this->assertEquals($created->id, $created->id);
     }
 
-    public function testAudienceLogin()
+    public function testCustomerLogin()
     {
         config(['app.url' => 'http://prashant.com']);
 
-        $audiences = app(Audience::class);
-        $audience = $audiences->findOneByField('email', 'john@doe.net');
+        $customers = app(Customer::class);
+        $customer = $customers->findOneByField('email', 'john@doe.net');
 
-        $response = $this->post('/audience/login', [
-            'email' => $audience->email,
+        $response = $this->post('/customer/login', [
+            'email' => $customer->email,
             'password' => '12345678'
         ]);
 
-        $response->assertRedirect('/audience/account/profile');
+        $response->assertRedirect('/customer/account/profile');
     }
 
         /**
-         * Test that audience cannot login with the wrong credentials.
+         * Test that customer cannot login with the wrong credentials.
          */
         public function willNotLoginWithWrongCredentials()
         {
-            $audiences = app(Audience::class);
-            $audience = $audiences->findOneByField('email', 'john@doe.net');
+            $customers = app(Customer::class);
+            $customer = $customers->findOneByField('email', 'john@doe.net');
 
-            $response = $this->from(route('login'))->post(route('audience.session.create'),
+            $response = $this->from(route('login'))->post(route('customer.session.create'),
                         [
-                            'email' => $audience->email,
+                            'email' => $customer->email,
                             'password' => 'wrongpassword3428903mlndvsnljkvsd',
                         ]);
 
@@ -98,11 +98,11 @@ class AuthTest extends TestCase
         }
 
         /**
-         * Test to confirm that audience cannot login if user does not exist.
+         * Test to confirm that customer cannot login if user does not exist.
          */
-        public function willNotLoginWithNonexistingAudience()
+        public function willNotLoginWithNonexistingCustomer()
         {
-            $response = $this->post(route('audience.session.create'), [
+            $response = $this->post(route('customer.session.create'), [
                             'email' => 'fiaiia9q2943jklq34h203qtb3o2@something.com',
                             'password' => 'wrong-password',
                         ]);
@@ -111,13 +111,13 @@ class AuthTest extends TestCase
         }
 
         /**
-         * To test that audience can logout
+         * To test that customer can logout
          */
-        public function allowsAudienceToLogout()
+        public function allowsCustomerToLogout()
         {
-            $audience = auth()->guard('audience')->user();
+            $customer = auth()->guard('customer')->user();
 
-            $this->get(route('audience.session.destroy'));
+            $this->get(route('customer.session.destroy'));
 
             $this->assertGuest();
         }

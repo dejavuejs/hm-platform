@@ -89,14 +89,14 @@
                                 <label for="customerGroup" >{{ __('admin::app.customers.customers.customer_group') }}</label>
 
                                 @if (! is_null($customer->customer_group_id))
-                                    <?php $selectedAudienceOption = $customer->group->id ?>
+                                    <?php $selectedCustomerOption = $customer->group->id ?>
                                 @else
-                                    <?php $selectedAudienceOption = '' ?>
+                                    <?php $selectedCustomerOption = '' ?>
                                 @endif
 
                                 <select  class="control" name="customer_group_id">
                                     @foreach ($customerGroup as $group)
-                                    <option value="{{ $group->id }}" {{ $selectedAudienceOption == $group->id ? 'selected' : '' }}>
+                                    <option value="{{ $group->id }}" {{ $selectedCustomerOption == $group->id ? 'selected' : '' }}>
                                         {{ $group->name}}
                                     </option>
                                     @endforeach

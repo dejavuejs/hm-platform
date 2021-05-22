@@ -94,7 +94,7 @@ return [
         ],
 
         'signup-form' => [
-            'page-title' => 'Audience - Registration Form',
+            'page-title' => 'Customer - Registration Form',
             'title' => 'Sign Up',
             'firstname' => 'First Name',
             'lastname' => 'Last Name',
@@ -125,7 +125,7 @@ return [
         ],
 
         'login-form' => [
-            'page-title' => 'Audience - Login',
+            'page-title' => 'Customer - Login',
             'title' => 'Sign In',
             'email' => 'Email',
             'password' => 'Password',
@@ -143,7 +143,7 @@ return [
             'title' => 'Recover Password',
             'email' => 'Email',
             'submit' => 'Submit',
-            'page_title' => 'Audience - Forgot Password Form'
+            'page_title' => 'Customer - Forgot Password Form'
         ],
 
         'reset-password' => [
@@ -156,12 +156,12 @@ return [
         ],
 
         'account' => [
-            'dashboard' => 'Audience - Edit Profile',
+            'dashboard' => 'Customer - Edit Profile',
             'menu' => 'Menu',
 
             'profile' => [
                 'index' => [
-                    'page-title' => 'Audience - Profile',
+                    'page-title' => 'Customer - Profile',
                     'title' => 'Profile',
                     'edit' => 'Edit',
                 ],
@@ -183,13 +183,13 @@ return [
 
                 'edit-profile' => [
                     'title' => 'Edit Profile',
-                    'page-title' => 'Audience - Edit Profile Form'
+                    'page-title' => 'Customer - Edit Profile Form'
                 ]
             ],
 
             'address' => [
                 'index' => [
-                    'page-title' => 'Audience - Address',
+                    'page-title' => 'Customer - Address',
                     'title' => 'Address',
                     'add' => 'Add Address',
                     'edit' => 'Edit',
@@ -204,7 +204,7 @@ return [
                 ],
 
                 'create' => [
-                    'page-title' => 'Audience - Add Address Form',
+                    'page-title' => 'Customer - Add Address Form',
                     'title' => 'Add Address',
                     'street-address' => 'Street Address',
                     'country' => 'Country',
@@ -219,7 +219,7 @@ return [
                 ],
 
                 'edit' => [
-                    'page-title' => 'Audience - Edit Address',
+                    'page-title' => 'Customer - Edit Address',
                     'title' => 'Edit Address',
                     'street-address' => 'Street Address',
                     'submit' => 'Save Address',
@@ -233,7 +233,7 @@ return [
 
             'order' => [
                 'index' => [
-                    'page-title' => 'Audience - Orders',
+                    'page-title' => 'Customer - Orders',
                     'title' => 'Orders',
                     'order_id' => 'Order ID',
                     'date' => 'Date',
@@ -288,7 +288,7 @@ return [
             'review' => [
                 'index' => [
                     'title' => 'Reviews',
-                    'page-title' => 'Audience - Reviews'
+                    'page-title' => 'Customer - Reviews'
                 ],
 
                 'view' => [
@@ -514,7 +514,7 @@ return [
             'greeting' => 'An Order :order_id has been placed on :created_at',
         ],
         'forget-password' => [
-            'subject' => 'Audience Reset Password',
+            'subject' => 'Customer Reset Password',
             'dear' => 'Dear :name',
             'info' => 'You are receiving this email because we received a password reset request for your account',
             'reset-password' => 'Reset Password',
@@ -522,7 +522,7 @@ return [
             'thanks' => 'Thanks!'
         ],
         'customer' => [
-            'subject' => 'New Audience Registration'
+            'subject' => 'New Customer Registration'
         ]
     ],
 

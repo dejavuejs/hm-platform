@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use Orca\Site\Mail\SubscriptionEmail;
-use Orca\Audience\Repositories\AudienceRepository as Audience;
+use Orca\Customer\Repositories\CustomerRepository as Customer;
 use Orca\Core\Repositories\SubscribersListRepository as Subscription;
 
 /**
@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
     protected $user;
 
     /**
-     * Audience Repository object
+     * Customer Repository object
      *
      * @var array
      */
@@ -45,7 +45,7 @@ class SubscriptionController extends Controller
      *
      * @return void
      */
-    public function __construct(Audience $customer, Subscription $subscription)
+    public function __construct(Customer $customer, Subscription $subscription)
     {
         $this->subscription = $subscription;
 

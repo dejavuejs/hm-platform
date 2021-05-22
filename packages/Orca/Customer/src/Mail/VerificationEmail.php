@@ -9,9 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 /**
  * Verification Mail class
- *
- * @author     <>
- *
  */
 class VerificationEmail extends Mailable
 {
@@ -19,7 +16,8 @@ class VerificationEmail extends Mailable
 
     public $verificationData;
 
-    public function __construct($verificationData) {
+    public function __construct($verificationData)
+    {
         $this->verificationData = $verificationData;
     }
 
@@ -33,6 +31,13 @@ class VerificationEmail extends Mailable
         return $this->to($this->verificationData['email'])
             ->from(env('SHOP_MAIL_FROM'))
             ->subject('Verification email')
-            ->view('site::emails.customer.verification-email')->with('data', ['email' => $this->verificationData['email'], 'token' => $this->verificationData['token']]);
+            ->view('site::emails.customer.verification-email')
+            ->with(
+                'data',
+                [
+                    'email' => $this->verificationData['email'],
+                    'token' => $this->verificationData['token']
+                ]
+            );
     }
 }

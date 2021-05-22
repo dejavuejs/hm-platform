@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
  * @author     <>
  *
  */
-class NewAudienceNotification extends Mailable
+class NewCustomerNotification extends Mailable
 {
     use Queueable, SerializesModels;
 

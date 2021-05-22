@@ -13,13 +13,13 @@
             </div>
             <div class="page-action">
                 {{--  <a href="{{ route('admin.users.create') }}" class="btn btn-lg btn-primary">
-                    {{ __('Add Audience') }}
+                    {{ __('Add Customer') }}
                 </a>  --}}
             </div>
         </div>
 
         <div class="page-content">
-            @inject('review','Orca\Admin\DataGrids\AudienceReviewDataGrid')
+            @inject('review','Orca\Admin\DataGrids\CustomerReviewDataGrid')
             {!! $review->render() !!}
         </div>
     </div>

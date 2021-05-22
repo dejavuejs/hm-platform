@@ -10,7 +10,7 @@ use Auth;
 use PDF;
 
 /**
- * Audience controlller for the customer basically for the tasks of customers
+ * Customer controlller for the customer basically for the tasks of customers
  * which will be done after customer authenticastion.
  *
  * @author    Prashant Singh <>

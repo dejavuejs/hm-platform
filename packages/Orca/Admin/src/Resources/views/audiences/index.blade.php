@@ -26,7 +26,7 @@
         </div>
 
         <div class="page-content">
-            @inject('customerGrid','Orca\Admin\DataGrids\AudienceDataGrid')
+            @inject('customerGrid','Orca\Admin\DataGrids\CustomerDataGrid')
 
             {!! $customerGrid->render() !!}
         </div>

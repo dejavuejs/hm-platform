@@ -43,40 +43,40 @@ Route::group(['middleware' => ['web']], function () {
                 'view' => 'admin::dashboard.index'
             ])->name('admin.dashboard.index');
 
-            //Audience Management Routes
-            Route::get('customers', 'Orca\Admin\Http\Controllers\Audience\AudienceController@index')->defaults('_config', [
+            //Customer Management Routes
+            Route::get('customers', 'Orca\Admin\Http\Controllers\Customer\CustomerController@index')->defaults('_config', [
                 'view' => 'admin::customers.index'
             ])->name('admin.customer.index');
 
-            Route::get('customers/create', 'Orca\Admin\Http\Controllers\Audience\AudienceController@create')->defaults('_config',[
+            Route::get('customers/create', 'Orca\Admin\Http\Controllers\Customer\CustomerController@create')->defaults('_config',[
                 'view' => 'admin::customers.create'
             ])->name('admin.customer.create');
 
-            Route::post('customers/create', 'Orca\Admin\Http\Controllers\Audience\AudienceController@store')->defaults('_config',[
+            Route::post('customers/create', 'Orca\Admin\Http\Controllers\Customer\CustomerController@store')->defaults('_config',[
                 'redirect' => 'admin.customer.index'
             ])->name('admin.customer.store');
 
-            Route::get('customers/edit/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceController@edit')->defaults('_config',[
+            Route::get('customers/edit/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerController@edit')->defaults('_config',[
                 'view' => 'admin::customers.edit'
             ])->name('admin.customer.edit');
 
-            Route::get('customers/note/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceController@createNote')->defaults('_config',[
+            Route::get('customers/note/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerController@createNote')->defaults('_config',[
                 'view' => 'admin::customers.note'
             ])->name('admin.customer.note.create');
 
-            Route::put('customers/note/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceController@storeNote')->defaults('_config',[
+            Route::put('customers/note/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerController@storeNote')->defaults('_config',[
                 'redirect' => 'admin.customer.index'
             ])->name('admin.customer.note.store');
 
-            Route::put('customers/edit/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceController@update')->defaults('_config', [
+            Route::put('customers/edit/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerController@update')->defaults('_config', [
                 'redirect' => 'admin.customer.index'
             ])->name('admin.customer.update');
 
-            Route::post('customers/delete/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceController@destroy')->name('admin.customer.delete');
+            Route::post('customers/delete/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerController@destroy')->name('admin.customer.delete');
 
-            Route::post('customers/masssdelete', 'Orca\Admin\Http\Controllers\Audience\AudienceController@massDestroy')->name('admin.customer.mass-delete');
+            Route::post('customers/masssdelete', 'Orca\Admin\Http\Controllers\Customer\CustomerController@massDestroy')->name('admin.customer.mass-delete');
 
-            Route::post('customers/masssupdate', 'Orca\Admin\Http\Controllers\Audience\AudienceController@massUpdate')->name('admin.customer.mass-update');
+            Route::post('customers/masssupdate', 'Orca\Admin\Http\Controllers\Customer\CustomerController@massUpdate')->name('admin.customer.mass-update');
 
             Route::get('reviews', 'Orca\Product\Http\Controllers\ReviewController@index')->defaults('_config',[
                 'view' => 'admin::customers.reviews.index'
@@ -118,28 +118,28 @@ Route::group(['middleware' => ['web']], function () {
                 'redirect' => 'admin.customer.review.index'
             ])->name('admin.customer.review.massupdate');
 
-            // Audience Groups Routes
-            Route::get('groups', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@index')->defaults('_config',[
+            // Customer Groups Routes
+            Route::get('groups', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@index')->defaults('_config',[
                 'view' => 'admin::customers.groups.index'
             ])->name('admin.groups.index');
 
-            Route::get('groups/create', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@create')->defaults('_config',[
+            Route::get('groups/create', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@create')->defaults('_config',[
                 'view' => 'admin::customers.groups.create'
             ])->name('admin.groups.create');
 
-            Route::post('groups/create', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@store')->defaults('_config',[
+            Route::post('groups/create', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@store')->defaults('_config',[
                 'redirect' => 'admin.groups.index'
             ])->name('admin.groups.store');
 
-            Route::get('groups/edit/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@edit')->defaults('_config',[
+            Route::get('groups/edit/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@edit')->defaults('_config',[
                 'view' => 'admin::customers.groups.edit'
             ])->name('admin.groups.edit');
 
-            Route::put('groups/edit/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@update')->defaults('_config',[
+            Route::put('groups/edit/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@update')->defaults('_config',[
                 'redirect' => 'admin.groups.index'
             ])->name('admin.groups.update');
 
-            Route::post('groups/delete/{id}', 'Orca\Admin\Http\Controllers\Audience\AudienceGroupController@destroy')->name('admin.groups.delete');
+            Route::post('groups/delete/{id}', 'Orca\Admin\Http\Controllers\Customer\CustomerGroupController@destroy')->name('admin.groups.delete');
 
 
             // Sales Routes

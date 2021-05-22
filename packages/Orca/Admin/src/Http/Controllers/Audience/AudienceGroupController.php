@@ -1,19 +1,19 @@
 <?php
 
-namespace Orca\Admin\Http\Controllers\Audience;
+namespace Orca\Admin\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Orca\Admin\Http\Controllers\Controller;
-use Orca\Audience\Repositories\AudienceGroupRepository as AudienceGroup;
+use Orca\Customer\Repositories\CustomerGroupRepository as CustomerGroup;
 
 /**
- * Audience Group controlller
+ * Customer Group controlller
  *
  * @author     <>
  *
  */
-class AudienceGroupController extends Controller
+class CustomerGroupController extends Controller
 {
     /**
      * Contains route related configuration
@@ -23,7 +23,7 @@ class AudienceGroupController extends Controller
     protected $_config;
 
     /**
-     * AudienceGroupRepository object
+     * CustomerGroupRepository object
      *
      * @var array
     */
@@ -32,10 +32,10 @@ class AudienceGroupController extends Controller
      /**
      * Create a new controller instance.
      *
-     * @param \Orca\Audience\Repositories\AudienceGroupRepository as customerGroup;
+     * @param \Orca\Customer\Repositories\CustomerGroupRepository as customerGroup;
      * @return void
      */
-    public function __construct(AudienceGroup $customerGroup)
+    public function __construct(CustomerGroup $customerGroup)
     {
         $this->_config = request('_config');
 
@@ -82,7 +82,7 @@ class AudienceGroupController extends Controller
 
         $this->customerGroup->create($data);
 
-        session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Audience Group']));
+        session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Customer Group']));
 
         return redirect()->route($this->_config['redirect']);
     }
@@ -116,7 +116,7 @@ class AudienceGroupController extends Controller
 
         $this->customerGroup->update(request()->all(), $id);
 
-        session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Audience Group']));
+        session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Customer Group']));
 
         return redirect()->route($this->_config['redirect']);
     }
@@ -134,16 +134,16 @@ class AudienceGroupController extends Controller
         if ($customerGroup->is_user_defined == 0) {
             session()->flash('warning', trans('admin::app.customers.customers.group-default'));
         } else if (count($customerGroup->customer) > 0) {
-            session()->flash('warning', trans('admin::app.response.customer-associate', ['name' => 'Audience Group']));
+            session()->flash('warning', trans('admin::app.response.customer-associate', ['name' => 'Customer Group']));
         } else {
             try {
                 $this->customerGroup->delete($id);
 
-                session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Audience Group']));
+                session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Customer Group']));
 
                 return response()->json(['message' => true], 200);
             } catch(\Exception $e) {
-                session()->flash('error', trans('admin::app.response.delete-failed', ['name' => 'Audience Group']));
+                session()->flash('error', trans('admin::app.response.delete-failed', ['name' => 'Customer Group']));
             }
         }
 
