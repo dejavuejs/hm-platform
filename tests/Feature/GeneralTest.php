@@ -29,15 +29,15 @@ class GeneralTest extends TestCase
     }
 
     /**
-     * Test for audience login
+     * Test for customer login
      *
      * @return void
      */
-    public function testAudienceLoginPage()
+    public function testCustomerLoginPage()
     {
         config(['app.url' => 'http://prashant.com']);
 
-        $response = $this->get('/audience/login');
+        $response = $this->get('/customer/login');
 
         $response->assertStatus(200);
     }
@@ -59,15 +59,15 @@ class GeneralTest extends TestCase
     }
 
     /**
-     * Test for audience registration page
+     * Test for customer registration page
      *
      * @return void
      */
-    public function testAudienceRegistrationPage()
+    public function testCustomerRegistrationPage()
     {
         // config(['app.url' => 'http://127.0.0.1:8000']);
 
-        $response = $this->get("/audience/register");
+        $response = $this->get("/customer/register");
 
         $response->assertStatus(200);
     }

@@ -6,7 +6,7 @@ use Orca\Site\Http\Controllers\Controller;
 use Orca\Checkout\Facades\Cart;
 use Orca\Shipping\Facades\Shipping;
 use Orca\Payment\Facades\Payment;
-use Orca\Checkout\Http\Requests\AudienceAddressForm;
+use Orca\Checkout\Http\Requests\CustomerAddressForm;
 use Orca\Sales\Repositories\OrderRepository;
 use Orca\Discount\Helpers\Cart\CouponAbleRule as Coupon;
 use Orca\Discount\Helpers\Cart\NonCouponAbleRule as NonCoupon;
@@ -111,17 +111,17 @@ class OnepageController extends Controller
     /**
      * Saves customer address.
      *
-     * @param  \Orca\Checkout\Http\Requests\AudienceAddressForm $request
+     * @param  \Orca\Checkout\Http\Requests\CustomerAddressForm $request
      * @return \Illuminate\Http\Response
     */
-    public function saveAddress(AudienceAddressForm $request)
+    public function saveAddress(CustomerAddressForm $request)
     {
         $data = request()->all();
 
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
         $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
 
-        if (Cart::hasError() || !Cart::saveAudienceAddress($data) || ! $rates = Shipping::collectRates())
+        if (Cart::hasError() || !Cart::saveCustomerAddress($data) || ! $rates = Shipping::collectRates())
             return response()->json(['redirect_url' => route('Site.checkout.cart.index')], 403);
 
         $this->nonCoupon->apply();

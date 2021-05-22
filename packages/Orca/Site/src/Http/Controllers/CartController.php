@@ -7,8 +7,8 @@ use Illuminate\Http\Response;
 use Orca\Checkout\Repositories\CartRepository;
 use Orca\Checkout\Repositories\CartItemRepository;
 use Orca\Product\Repositories\ProductRepository;
-use Orca\Audience\Repositories\AudienceRepository;
-use Orca\Audience\Repositories\WishlistRepository;
+use Orca\Customer\Repositories\CustomerRepository;
+use Orca\Customer\Repositories\WishlistRepository;
 use Illuminate\Support\Facades\Event;
 use Cart;
 
@@ -54,7 +54,7 @@ class CartController extends Controller
     public function __construct(
         CartRepository $cart,
         CartItemRepository $cartItem,
-        AudienceRepository $customer,
+        CustomerRepository $customer,
         ProductRepository $product,
         WishlistRepository $wishlist
     )

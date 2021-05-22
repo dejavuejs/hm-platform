@@ -19,7 +19,7 @@
         </div>
 
         <div class="page-content">
-            @inject('customerGroup','Orca\Admin\DataGrids\AudienceGroupDataGrid')
+            @inject('customerGroup','Orca\Admin\DataGrids\CustomerGroupDataGrid')
             {!! $customerGroup->render() !!}
         </div>
     </div>

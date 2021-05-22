@@ -1,23 +1,23 @@
 <?php
 
-namespace Orca\Admin\Http\Controllers\Audience;
+namespace Orca\Admin\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Orca\Admin\Http\Controllers\Controller;
-use Orca\Audience\Repositories\AudienceRepository as Audience;
-use Orca\Audience\Repositories\AudienceGroupRepository as AudienceGroup;
+use Orca\Customer\Repositories\CustomerRepository as Customer;
+use Orca\Customer\Repositories\CustomerGroupRepository as CustomerGroup;
 use Orca\Core\Repositories\ChannelRepository as Channel;
-use Orca\Admin\Mail\NewAudienceNotification;
+use Orca\Admin\Mail\NewCustomerNotification;
 use Mail;
 
 /**
- * Audience controlller
+ * Customer controlller
  *
  * @author     <>
  *
  */
-class AudienceController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Contains route related configuration
@@ -27,14 +27,14 @@ class AudienceController extends Controller
     protected $_config;
 
     /**
-     * AudienceRepository object
+     * CustomerRepository object
      *
      * @var array
      */
     protected $customer;
 
      /**
-     * AudienceGroupRepository object
+     * CustomerGroupRepository object
      *
      * @var array
      */
@@ -50,11 +50,11 @@ class AudienceController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param \Orca\Audience\Repositories\AudienceRepository $customer
-     * @param \Orca\Audience\Repositories\AudienceGroupRepository $customerGroup
+     * @param \Orca\Customer\Repositories\CustomerRepository $customer
+     * @param \Orca\Customer\Repositories\CustomerGroupRepository $customerGroup
      * @param \Orca\Core\Repositories\ChannelRepository $channel
      */
-    public function __construct(Audience $customer, AudienceGroup $customerGroup, Channel $channel)
+    public function __construct(Customer $customer, CustomerGroup $customerGroup, Channel $channel)
     {
         $this->_config = request('_config');
 
@@ -118,9 +118,9 @@ class AudienceController extends Controller
 
         $customer = $this->customer->create($data);
 
-        Mail::queue(new NewAudienceNotification($customer, $password));
+        Mail::queue(new NewCustomerNotification($customer, $password));
 
-        session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Audience']));
+        session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Customer']));
 
         return redirect()->route($this->_config['redirect']);
     }
@@ -162,7 +162,7 @@ class AudienceController extends Controller
 
         $this->customer->update(request()->all(), $id);
 
-        session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Audience']));
+        session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Customer']));
 
         return redirect()->route($this->_config['redirect']);
     }
@@ -180,11 +180,11 @@ class AudienceController extends Controller
         try {
             $this->customer->delete($id);
 
-            session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Audience']));
+            session()->flash('success', trans('admin::app.response.delete-success', ['name' => 'Customer']));
 
             return response()->json(['message' => true], 200);
         } catch(\Exception $e) {
-            session()->flash('error', trans('admin::app.response.delete-failed', ['name' => 'Audience']));
+            session()->flash('error', trans('admin::app.response.delete-failed', ['name' => 'Customer']));
         }
 
         return response()->json(['message' => false], 400);

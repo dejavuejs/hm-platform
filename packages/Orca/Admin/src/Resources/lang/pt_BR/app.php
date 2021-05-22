@@ -716,7 +716,7 @@ return [
             'title' => 'Add Note',
             'save-note' => 'Save Note',
             'enter-note' => 'Enter Note',
-            'help-title' => 'Add Note On This Audience'
+            'help-title' => 'Add Note On This Customer'
         ],
         'customers' => [
             'add-title' => 'Add Cliente',

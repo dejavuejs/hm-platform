@@ -113,7 +113,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Audience delete a reviews from their account
+     * Customer delete a reviews from their account
      *
      * @return response
      */
@@ -135,7 +135,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Audience delete all reviews from their account
+     * Customer delete all reviews from their account
      *
      * @return Mixed Response & Boolean
     */

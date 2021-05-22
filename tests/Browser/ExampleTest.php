@@ -15,16 +15,16 @@ class ExampleTest extends DuskTestCase
      */
     public function testBasicExample()
     {
-        $audience = app('Orca\Audience\Repositories\AudienceRepository');
+        $customer = app('Orca\Customer\Repositories\CustomerRepository');
 
-        $audience = $audience->all();
+        $customer = $customer->all();
 
-        $audience = $audience->first();
+        $customer = $customer->first();
 
-        $this->browse(function (Browser $browser) use($audience) {
-            $browser->visit('/audience/login')
-                ->type('email', $audience->email)
-                ->type('password', $audience->password)
+        $this->browse(function (Browser $browser) use($customer) {
+            $browser->visit('/customer/login')
+                ->type('email', $customer->email)
+                ->type('password', $customer->password)
                 ->click('input[type="submit"]')
                 ->screenshot('error');
         });
