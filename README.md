@@ -114,7 +114,7 @@ Maybe you need to create an attribute called price but you created it using core
 have Render logic and are non immutable.
 
 While on the other hand a business vertical have complex attribute such as price of product or maybe your image slider or whatever. They tend to have some render
-logic and store logic and can be immuatable due to localization and i18n. So derived or composable attributes are made up from core attributes and system properties
+logic and store logic and can be immutable due to localization and i18n. So derived or composable attributes are made up from core attributes and system properties
 such as Timezone, Units, etc.
 
 ## Resources as composition of attributes and attributes are composed from JSON schemas that are validated (win win for all).
