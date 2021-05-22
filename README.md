@@ -27,6 +27,11 @@ SAAS based approach also available.
 Orca is designed to help you in able ways to reuse code in a very possibly friendly manner. Its usage with AppStore is a total different perspective all together.
 Binding Orca with AppStore will give you dependencies such as system attributes/products/services being pushed and pulled to and fro for our customers at blink of an eye.
 
+# ISO Standards dependent for localization context:
+    1. Countries (ISO 3166 / ISO 3166 Alpha 2)
+    2. Postal codes (ISO 3166 / ISO 3166 Alpha 2)
+    3. Localization (ISO 3166 / ISO 3166 Alpha 2)
+
 # Now lets talk about attributes:
 Digital information exists in two forms only:
 1. Structured (DB - Disk/RAM).
