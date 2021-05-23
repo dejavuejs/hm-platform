@@ -7,13 +7,14 @@ return [
         'route' => 'admin.dashboard.index',
         'sort' => 1,
         'icon-class' => 'dashboard-icon',
-    ], [
-        'key' => 'catalog',
-        'name' => 'admin::app.layouts.catalog',
-        'route' => 'admin.catalog.categories.index',
-        'sort' => 3,
-        'icon-class' => 'catalog-icon',
     ]
+    // , [
+    //     'key' => 'catalog',
+    //     'name' => 'admin::app.layouts.catalog',
+    //     'route' => 'admin.catalog.categories.index',
+    //     'sort' => 3,
+    //     'icon-class' => 'catalog-icon',
+    // ]
     // , [
     //     'key' => 'catalog.categories',
     //     'name' => 'admin::app.layouts.categories',
@@ -39,13 +40,15 @@ return [
         'route' => 'admin.groups.index',
         'sort' => 2,
         'icon-class' => '',
-    ], [
-        'key' => 'customers.reviews',
-        'name' => 'admin::app.layouts.reviews',
-        'route' => 'admin.customer.review.index',
-        'sort' => 3,
-        'icon-class' => '',
-    ], [
+    ],
+    // [
+    //     'key' => 'customers.reviews',
+    //     'name' => 'admin::app.layouts.reviews',
+    //     'route' => 'admin.customer.review.index',
+    //     'sort' => 3,
+    //     'icon-class' => '',
+    // ],
+    [
         'key' => 'customers.subscribers',
         'name' => 'admin::app.layouts.newsletter-subscriptions',
         'route' => 'admin.customers.subscribers.index',
