@@ -38,7 +38,6 @@
         "league/flysystem": "1.1.0",
         "league/flysystem-cached-adapter": "dev-master",
         "league/flysystem-sftp": "dev-master",
-        "maatwebsite/excel": "3.2.x-dev",
         "predis/predis": "2.0.x-dev",
         "prettus/l5-repository": "*"
     },
