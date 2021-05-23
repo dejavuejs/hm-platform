@@ -5,7 +5,7 @@ namespace Orca\Customer\Notifications;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Auth\Notifications\ResetPassword;
 
-class UserResetPassword extends ResetPassword
+class CustomerResetPassword extends ResetPassword
 {
 
     /**

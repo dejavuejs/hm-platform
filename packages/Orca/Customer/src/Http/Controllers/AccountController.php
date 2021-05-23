@@ -2,8 +2,8 @@
 
 namespace Orca\Customer\Http\Controllers;
 
-use Orca\Customer\Repositories\UserRepository;
-use Orca\Customer\Repositories\UserAddressRepository;
+use Orca\Customer\Repositories\CustomerRepository;
+use Orca\Customer\Repositories\CustomerAddressRepository;
 use Auth;
 
 /**
@@ -27,7 +27,7 @@ class AccountController extends Controller
     protected $address;
 
 
-    public function __construct(UserRepository $customer, UserAddressRepository $address)
+    public function __construct(CustomerRepository $customer, CustomerAddressRepository $address)
     {
         $this->middleware('customer');
 

@@ -10,8 +10,7 @@ use Orca\Core\Eloquent\Repository;
  * @author    Prashant Singh <>
  *
  */
-
-class CustomerAddressRepository extends Repository
+class CustomerRepository extends Repository
 {
     /**
      * Specify Model class name
@@ -21,6 +20,6 @@ class CustomerAddressRepository extends Repository
 
     function model()
     {
-        return 'Orca\Customer\Contracts\CustomerAddress';
+        return 'Orca\Customer\Contracts\Customer';
     }
 }
