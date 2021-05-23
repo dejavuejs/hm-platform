@@ -7,7 +7,7 @@ use Orca\Category\Database\Seeders\DatabaseSeeder as CategorySeeder;
 // use Orca\Attribute\Database\Seeders\DatabaseSeeder as AttributeSeeder;
 use Orca\Core\Database\Seeders\DatabaseSeeder as CoreSeeder;
 use Orca\User\Database\Seeders\DatabaseSeeder as UserSeeder;
-use Orca\CustomerSeeder\Database\Seeders\DatabaseSeeder as CustomerSeeder;
+use Orca\Customer\Database\Seeders\DatabaseSeeder as CustomerSeeder;
 // use Orca\Inventory\Database\Seeders\DatabaseSeeder as InventorySeeder;
 
 class DatabaseSeeder extends Seeder

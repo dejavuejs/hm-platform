@@ -9,9 +9,9 @@ class CustomerTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('customer')->delete();
+        DB::table('customers')->delete();
 
-        DB::table('customer')->insert([
+        DB::table('customers')->insert([
             [
                 'first_name' => 'customer',
                 'last_name' => 'orca',
