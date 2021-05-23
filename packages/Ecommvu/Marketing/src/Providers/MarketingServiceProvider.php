@@ -19,6 +19,8 @@ class MarketingServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
 
+        $this->loadViewsFrom(__DIR__, '/../Resources/views', 'marketing');
+
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $schedule->command('campaign:process')->daily();
         });
@@ -34,5 +36,9 @@ class MarketingServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([EmailsCommand::class]);
         }
+
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/menu.php', 'menu.admin'
+        );
     }
 }

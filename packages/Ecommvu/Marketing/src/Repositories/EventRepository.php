@@ -2,7 +2,7 @@
 
 namespace Ecommvu\Marketing\Repositories;
 
-use Ecommvu\Core\Eloquent\Repository;
+use Orca\Core\Eloquent\Repository;
 
 class EventRepository extends Repository
 {

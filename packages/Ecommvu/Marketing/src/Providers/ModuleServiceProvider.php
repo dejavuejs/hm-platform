@@ -2,9 +2,9 @@
 
 namespace Ecommvu\Marketing\Providers;
 
-use Ecommvu\Core\Providers\CoreModuleServiceProvider;
+use Konekt\Concord\BaseModuleServiceProvider;
 
-class ModuleServiceProvider extends CoreModuleServiceProvider
+class ModuleServiceProvider extends BaseModuleServiceProvider
 {
     protected $models = [
         \Ecommvu\Marketing\Models\Campaign::class,

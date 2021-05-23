@@ -234,7 +234,9 @@ return [
         Orca\Core\Providers\CoreServiceProvider::class,
         Orca\Site\Providers\SiteServiceProvider::class,
         Orca\Customer\Providers\CustomerServiceProvider::class,
-        Orca\CMS\Providers\CMSServiceProvider::class
+        Orca\CMS\Providers\CMSServiceProvider::class,
+
+        Ecommvu\Marketing\Providers\MarketingServiceProvider::class
     ],
 
     /*

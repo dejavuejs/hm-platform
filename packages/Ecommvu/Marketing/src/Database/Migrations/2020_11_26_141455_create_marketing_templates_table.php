@@ -14,7 +14,7 @@ class CreateMarketingTemplatesTable extends Migration
     public function up()
     {
         Schema::create('marketing_templates', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('status');
             $table->text('content');
