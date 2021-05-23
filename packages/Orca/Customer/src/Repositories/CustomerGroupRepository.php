@@ -11,7 +11,7 @@ use Orca\Core\Eloquent\Repository;
  *
  */
 
-class UserGroupRepository extends Repository
+class CustomerGroupRepository extends Repository
 {
     /**
      * Specify Model class name

@@ -5,12 +5,13 @@ namespace Orca\Customer\Repositories;
 use Orca\Core\Eloquent\Repository;
 
 /**
- * User Reposotory
+ * Customer Reposotory
  *
  * @author    Prashant Singh <>
  *
  */
-class UserRepository extends Repository
+
+class CustomerAddressRepository extends Repository
 {
     /**
      * Specify Model class name
@@ -20,6 +21,6 @@ class UserRepository extends Repository
 
     function model()
     {
-        return 'Orca\Customer\Contracts\Customer';
+        return 'Orca\Customer\Contracts\CustomerAddress';
     }
 }

@@ -4,12 +4,12 @@ namespace Orca\Customer\Http\Listeners;
 use Cookie;
 use Cart;
 
-class UserEventsHandler {
+class CustomerEventsHandler {
 
     /**
-     * Handle User login events.
+     * Handle Customer login events.
      */
-    public function onUserLogin($event)
+    public function onCustomerLogin($event)
     {
         /**
          * handle the customer login event to manage the after login, if the customer has added any products as guest then
@@ -28,6 +28,6 @@ class UserEventsHandler {
      */
     public function subscribe($events)
     {
-        $events->listen('customer.after.login', 'Orca\Customer\Http\Listeners\UserEventsHandler@onUserLogin');
+        $events->listen('customer.after.login', 'Orca\Customer\Http\Listeners\CustomerEventsHandler@onCustomerLogin');
     }
 }

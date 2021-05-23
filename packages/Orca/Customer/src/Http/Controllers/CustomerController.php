@@ -17,7 +17,7 @@ use Hash;
  * @author  Prashant Singh <>
  *
  */
-class UserController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
