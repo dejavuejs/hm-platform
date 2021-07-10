@@ -4,7 +4,7 @@ namespace Orca\Core\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
-use Webkul\Core\Models\Locale;
+use Ecommvu\Core\Models\Locale;
 
 class TranslatableModel extends Model
 {

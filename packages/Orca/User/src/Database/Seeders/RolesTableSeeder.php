@@ -3,7 +3,7 @@
 namespace Orca\User\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Webkul\User\Models\Role;
+use Ecommvu\User\Models\Role;
 use DB;
 
 class RolesTableSeeder extends Seeder

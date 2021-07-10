@@ -2,7 +2,7 @@
 
 namespace Ecommvu\DNS\Repositories;
 
-use Webkul\Core\Eloquent\Repository;
+use Ecommvu\Core\Eloquent\Repository;
 use Illuminate\Support\Facades\Storage;
 
 class DNSRepository extends Repository
