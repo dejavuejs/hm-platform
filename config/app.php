@@ -217,7 +217,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
 
         //Laravel Maatwebsite
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
 
         //Repository
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
@@ -291,7 +291,6 @@ return [
         'Core' => Orca\Core\Facades\Core::class,
         'DbView' => Flynsarmy\DbBladeCompiler\Facades\DbView::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Concord' => Konekt\Concord\Facades\Concord::class,
         'Helper'  => Konekt\Concord\Facades\Helper::class,
     ],
