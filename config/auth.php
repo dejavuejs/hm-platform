@@ -22,6 +22,11 @@ return [
             'provider' => 'customers'
         ],
 
+        'customer' =>[
+            'driver' => 'session',
+            'provider' => 'customers'
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins'
@@ -42,6 +47,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => Orca\User\Models\Admin::class,
+        ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => Orca\Student\Models\Student::class,
         ]
     ],
 
@@ -54,6 +64,11 @@ return [
         'customers' => [
             'provider' => 'customers',
             'table' => 'customer_password_resets',
+            'expire' => 60,
+        ],
+        'students' => [
+            'provider' => 'students',
+            'table' => 'students_password_resets',
             'expire' => 60,
         ],
     ],
