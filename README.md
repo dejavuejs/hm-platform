@@ -124,3 +124,57 @@ Orca can create resource via attributes. With this product owner make attribute 
 
 Orca is functional but it is under development and is getting rapidly updated and ready for our own usage.
 
+# Installation instructions:
+1. Clone the project:
+```
+git clone https://github.com/dejavuejs/orca.git
+```
+
+2. Install via composer (open terminal inside the clone's folder):
+```
+composer create-project
+```
+
+3. Make storage link for public storage directory:
+```
+php artisan storage:link
+```
+4. Publish vendor files and configuration:
+```
+php artisan vendor:publish
+
+press 0 and then enter
+```
+
+5. Update DB credentials in .env file and set APP_URL in case of custom domain:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=*****
+DB_USERNAME=****
+DB_PASSWORD=****
+```
+
+6. Run migrations:
+```
+php artisan migrate
+```
+
+7. Run seeder:
+```
+php artisan db:seed
+```
+
+8. Admin url:
+```
+https://domain.com/admin, https://domain.com/admin/login
+```
+
+Main packages available:
+1. Admin
+2. Site
+3. Core
+4. User (Manager Admin and roles for ACL)
+5. End User
+
