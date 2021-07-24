@@ -169,6 +169,8 @@ php artisan db:seed
 8. Admin url:
 ```
 https://domain.com/admin, https://domain.com/admin/login
+admin@example.com
+12345678
 ```
 
 Main packages available:
