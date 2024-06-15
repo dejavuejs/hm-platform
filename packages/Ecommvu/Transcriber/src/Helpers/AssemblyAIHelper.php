@@ -32,24 +32,24 @@ class AssemblyAIHelper {
         $transcript_endpoint = "https://api.assemblyai.com/v2/transcript";
 
         // Request parameters
-        $data = array(
-            "audio_url" => $FILE_URL,
-            "speech_model" => "best",
-            "redact_pii" => true,
-            "speaker_labels" => "true",
-            "speakers_expected" => 2,
-            "language_code" => "hi",
-            "redact_pii_sub" => "hash",
-            "redact_pii_policies" => [
-                "phone_number",
-                "medical_condition",
-                "banking_information",
-                "credit_card_number",
-                "date_of_birth",
-                "credit_card_cvv",
-                "credit_card_expiration"
-            ]
-        );
+        $data = [
+            'audio_url' => $FILE_URL,
+            'speech_model' => 'best',
+            'speaker_labels' => true,
+            // 'speakers_expected' => 2,
+            'language_code' => 'hi',
+            // "redact_pii" => true,
+            // "redact_pii_sub" => "hash",
+            // "redact_pii_policies" => [
+            //     "phone_number",
+            //     "medical_condition",
+            //     "banking_information",
+            //     "credit_card_number",
+            //     "date_of_birth",
+            //     "credit_card_cvv",
+            //     "credit_card_expiration"
+            // ]
+        ];
 
         // HTTP request headers
         $headers = array(
@@ -84,7 +84,7 @@ class AssemblyAIHelper {
             $transcription_result = json_decode(curl_exec($polling_response), true);
 
             if (isset($transcription_result['status']) && $transcription_result['status'] === "completed") {
-                $transcribed = $this->transcriber->create(
+                $this->transcriber->create(
                     [
                         "source_path" => $FILE_URL,
                         "status_label" => "completed",
