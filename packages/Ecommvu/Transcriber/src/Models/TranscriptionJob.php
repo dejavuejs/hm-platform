@@ -2,13 +2,12 @@
 
 namespace Ecommvu\Transcriber\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Ecommvu\Transcriber\Contracts\TranscriptionJob as ContractsTranscriptionJob;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class TranscriptionJob extends Model
+class TranscriptionJob extends Model implements ContractsTranscriptionJob
 {
     use HasFactory, Notifiable;
 
@@ -21,6 +20,8 @@ class TranscriptionJob extends Model
         'source_path',
         'status_label',
         'status',
+        'transcription_result',
+        'transcription_text'
     ];
 
     // /**

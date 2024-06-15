@@ -2,6 +2,6 @@
 
 namespace Ecommvu\Transcriber\Contracts;
 
-interface Transcriber
+interface TranscriptionJob
 {
 }

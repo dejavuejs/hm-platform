@@ -14,6 +14,7 @@ return [
         \Orca\Customer\Providers\ModuleServiceProvider::class,
         \Orca\CMS\Providers\ModuleServiceProvider::class,
         \Orca\User\Providers\ModuleServiceProvider::class,
-        \Ecommvu\Marketing\Providers\ModuleServiceProvider::class
+        \Ecommvu\Marketing\Providers\ModuleServiceProvider::class,
+        \Ecommvu\Transcriber\Providers\ModuleServiceProvider::class
     ]
 ];

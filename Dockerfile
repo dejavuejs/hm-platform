@@ -12,6 +12,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #Install zip+icu dev libs, wget, git
 RUN apt-get install libzip-dev zip libicu-dev libpng-dev wget git -y
 
+RUN DEBIAN_FRONTEND=noninteractive apt update \
+&& apt install -q -y --no-install-recommends python3
+
 #Install PHP extensions zip and intl (intl requires to be configured)
 RUN docker-php-ext-install zip && docker-php-ext-configure intl && docker-php-ext-install intl exif gd pdo_mysql
 
@@ -53,6 +56,7 @@ RUN a2ensite default-ssl.conf
 ## ---------------------------------------
 ##      Install Node
 ## ---------------------------------------
+ENV PYTHON /usr/bin/python3
 
 RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
