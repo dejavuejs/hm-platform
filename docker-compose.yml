@@ -1,65 +1,78 @@
-version: '3.2'
+version: '3.1'
 
 services:
-  app:
-    image: omr
+  platform-php-apache:
+    image: platform-php-apache
+    container_name: platform-php-apache
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        project_path: /var/www/html/
+        uid: 1000
+        user: platform_user
     restart: unless-stopped
-    tty: true
-    stdin_open: true
+    # tty: true
+    # stdin_open: true
     ports:
-      - 127.0.0.1:80:80/tcp
+      - 1000:80
     volumes:
-      - ./:/var/www/html:cached
-      - ./apache2.conf:/etc/apache2/apache2.conf:ro
-      - ./php.ini:/usr/local/etc/php/php.ini:ro
-      - ~/.composer/cache:/root/.composer/cache:cached
-      - ~/.npm:/root/.npm:cached
+      - ./:/var/www/html
+      # - ./apache2_local.conf:/etc/apache2/apache2.conf:ro
+      # - ./php.ini:/usr/local/etc/php/php.ini:ro
+      # - ~/.composer/cache:/root/.composer/cache:cached
+      # - ~/.npm:/root/.npm:cached
     depends_on:
-      # - db
-      - redis
+      - platform-db
+      - platform-redis
     links:
-      # - db
-      - redis
+      - platform-db
+      - platform-redis
     logging:
       options:
         max-size: "10m"
         max-file: "3"
 
-  worker:
-    image: omr
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - ./:/var/www/html:cached
-      - ./php.ini:/usr/local/etc/php/php.ini:ro
-    command: 'php ./artisan queue:work --sleep=3 --tries=3'
-    depends_on:
-      # - db
-      - redis
-    links:
-      # - db
-      - redis
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
-
-  # horizon:
-  #   image: omr
+  # worker:
+  #   # image: omr
   #   build:
   #     context: .
   #     dockerfile: Dockerfile
+  #     args:
+  #       project_path: /var/www/html/
+  #       uid: 1000
+  #       user: $USER
+  #   restart: unless-stopped
+  #   tty: true
+  #   volumes:
+  #     - ./:/var/www/html
+  #     # - ./php.ini:/usr/local/etc/php/php.ini:ro
+  #   command: 'php ./artisan queue:work --sleep=3 --tries=3'
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   links:
+  #     - db
+  #     - redis
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+  # horizon:
+  #   # image: omr
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       project_path: /var/www/html/
+  #       uid: 1000
+  #       user: $USER
   #   restart: unless-stopped
   #   tty: true
   #   volumes:
   #     - ./:/var/www/html:cached
-  #     - ./php.ini:/usr/local/etc/php/php.ini:ro
+  #     # - ./php.ini:/usr/local/etc/php/php.ini:ro
   #   command: 'php ./artisan horizon'
   #   depends_on:
   #     - db
@@ -72,11 +85,12 @@ services:
   #       max-size: "10m"
   #       max-file: "3"
 
-  redis:
+  platform-redis:
     image: redis:5-alpine
     restart: unless-stopped
-    ports:
-      - 127.0.0.1:6379:6379/tcp
+    container_name: platform-redis
+#    ports:
+#      - 127.0.0.1:6379:6379/tcp
     volumes:
       - ./redis.conf:/etc/redis.conf:ro
       - redisData:/data:cached
@@ -86,24 +100,34 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # db:
-  #   image: mariadb:10.3
-  #   restart: unless-stopped
-  #   ports:
-  #     - 127.0.0.1:3306:3306/tcp
-  #   volumes:
-  #     - ./mariadb.cnf:/etc/mysql/my.cnf:ro
-  #     - dbData:/var/lib/mysql:cached
-  #   environment:
-  #     MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-  #     MYSQL_DATABASE: omr
-  #     MYSQL_USER: omr
-  #     MYSQL_PASSWORD: omr
-  #   command: mysqld --sql_mode=""
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
+  platform-db:
+    image: mariadb:10.3
+    restart: unless-stopped
+    container_name: platform-db
+#    ports:
+#      - 127.0.0.1:3306:3306/tcp
+    volumes:
+      - ./mariadb.cnf:/etc/mysql/my.cnf:ro
+      - dbData:/var/lib/mysql:cached
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: omr
+      MYSQL_USER: omr
+      MYSQL_PASSWORD: omr
+      MYSQL_ROOT_PASSWORD: omr
+    command: mysqld --sql_mode=""
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  platform-adminer:
+    image: adminer
+    container_name: platform-adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - platform-db
 
 volumes:
   dbData:
