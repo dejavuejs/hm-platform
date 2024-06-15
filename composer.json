@@ -65,7 +65,8 @@
             "Orca\\Core\\": "packages/Orca/Core/src",
             "Orca\\Theme\\": "packages/Orca/Theme/src",
             "Orca\\CMS\\": "packages/Orca/CMS/src",
-            "Ecommvu\\Marketing\\": "packages/Ecommvu/Marketing/src"
+            "Ecommvu\\Marketing\\": "packages/Ecommvu/Marketing/src",
+            "Ecommvu\\Transcriber\\": "packages/Ecommvu/Transcriber/src"
         }
     },
     "autoload-dev": {
