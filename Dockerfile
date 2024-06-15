@@ -1,77 +1,97 @@
-# main image
 FROM php:8.2-apache
 
-# installing dependencies
-RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libicu-dev \
-    libgmp-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libwebp-dev \
-    libxpm-dev \
-    libzip-dev \
-    unzip \
-    zlib1g-dev
+ARG NODE_VERSION=18
 
-# configuring php extension
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-configure intl
+WORKDIR /var/www/html
 
-# installing php extension
-RUN docker-php-ext-install bcmath calendar exif gd gmp intl mysqli pdo pdo_mysql zip
+RUN apt-get update
 
-# installing composer
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# installing node js
-COPY --from=node:18 /usr/local/lib/node_modules /usr/local/lib/node_modules
-COPY --from=node:18 /usr/local/bin/node /usr/local/bin/node
-RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+#Install zip+icu dev libs, wget, git
+RUN apt-get install libzip-dev zip libicu-dev libpng-dev wget git -y
 
-# installing global node dependencies
-RUN npm install -g npx
-# RUN npm install -g laravel-echo-server
+#Install PHP extensions zip and intl (intl requires to be configured)
+RUN docker-php-ext-install zip && docker-php-ext-configure intl && docker-php-ext-install intl exif gd pdo_mysql
 
-# arguments
-ARG project_path
-ARG uid
-ARG user
+#PostgreSQL
+RUN apt-get install libpq-dev -y
+RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && docker-php-ext-install pdo_pgsql pgsql
 
-# setting work directory
-WORKDIR $project_path
-
-# adding user
-RUN useradd -G www-data -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
-# setting apache
-COPY ./.configs/apache.conf /etc/apache2/sites-available/000-default.conf
 
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+# Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# WORKDIR /var/www/html/platform
-
-# Set Apache webroot to "public" folder (for Laravel support)
+# Set Apache webroot to "public" folder
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# RUN apt-get install -y ssl-cert
-# RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj  "/C=UK/ST=EN/L=LN/O=FNL/CN=127.0.0.1" -keyout ./docker-ssl.key -out ./docker-ssl.pem -outform PEM
-# RUN mv docker-ssl.pem /etc/ssl/certs/ssl-cert-snakeoil.pem
-# RUN mv docker-ssl.key /etc/ssl/private/ssl-cert-snakeoil.key
 
-# Setup Apache2 mod_ssl
-# RUN a2enmod ssl
-# # Setup Apache2 HTTPS env
-# RUN a2ensite default-ssl.conf
 
-# setting up project from `src` folder
-# RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-RUN chmod -R 775 $project_path
-RUN chown -R $user:www-data $project_path
+## -------------------------------
+##      Setup Apache2 mod_ssl
+## -------------------------------
 
-# changing user
-USER $user
+# Prepare fake SSL certificate
+RUN apt-get install -y ssl-cert
+RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj  "/C=UK/ST=EN/L=LN/O=FNL/CN=127.0.0.1" -keyout ./docker-ssl.key -out ./docker-ssl.pem -outform PEM
+RUN mv docker-ssl.pem /etc/ssl/certs/ssl-cert-snakeoil.pem
+RUN mv docker-ssl.key /etc/ssl/private/ssl-cert-snakeoil.key
+
+# Enable the mod and default ssl site
+RUN a2enmod ssl
+RUN a2ensite default-ssl.conf
+
+## -------------------------------
+##      Apache2 mod_ssl setup
+## -------------------------------
+
+
+## ---------------------------------------
+##      Install Node
+## ---------------------------------------
+
+RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm
+
+## ---------------------------------------
+##      Node installed
+## ---------------------------------------
+
+
+## ---------------------------------------
+##      Install Postman CLI
+## ---------------------------------------
+
+RUN curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+##      Postman CLI installed
+## ---------------------------------------
+
+
+
+## ---------------------------------------
+##      Install xdebug 3.x
+## ---------------------------------------
+
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+## ---------------------------------------
+##      xdebug 3.x installed
+## ---------------------------------------
+
+# If this cofiguration is not the one you want, you can override this in Dockerfile of your project
+# If overriding does not work, then use this file as source to generate a new docker image without following lines
+RUN echo '\
+zend_extension=xdebug \n\
+xdebug.mode = debug,coverage \n\
+xdebug.discover_client_host = on \n\
+xdebug.client_host = host.docker.internal \n\
+' > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+
+
+RUN usermod -u 1001 www-data && groupmod -g 1001 www-data

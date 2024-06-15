@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocalesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class CreateLocalesTable extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
+            $table->enum('direction', ['ltr', 'rtl'])->default('ltr');
             $table->timestamps();
         });
     }
@@ -30,4 +31,4 @@ class CreateLocalesTable extends Migration
     {
         Schema::dropIfExists('locales');
     }
-}
+};

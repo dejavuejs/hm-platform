@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoreConfigTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,12 @@ class CreateCoreConfigTable extends Migration
         Schema::create('core_config', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->string('value');
-            $table->unsignedBigInteger('channel_id');
-            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
+            $table->longText('value');
+            // $table->unsignedBigInteger('channel_code');
+            $table->string('channel_code')->nullable();
+            $table->string('locale_code')->nullable();
+            $table->timestamps();
+            // $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
         });
     }
 
@@ -31,4 +34,4 @@ class CreateCoreConfigTable extends Migration
     {
         Schema::dropIfExists('core_config');
     }
-}
+};

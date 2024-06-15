@@ -8,44 +8,43 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4|^8.2",
         "ext-curl": "*",
         "ext-intl": "*",
         "ext-openssl": "*",
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
         "ext-tokenizer": "*",
-        "astrotomic/laravel-translatable": "*",
+        "astrotomic/laravel-translatable": "^11.0.0",
         "aws/aws-sdk-php-laravel": "dev-master",
         "bagisto/bagisto-package-generator": "dev-master",
-        "barryvdh/laravel-dompdf": "^0.8.0@dev",
-        "doctrine/dbal": "2.*",
-        "fideloper/proxy": "^4.4",
+        "barryvdh/laravel-dompdf": "^2.0.0",
+        "doctrine/dbal": "^3.0",
         "flynsarmy/db-blade-compiler": "*",
-        "fruitcake/laravel-cors": "^2.0",
-        "graham-campbell/markdown": "13.1",
+        "graham-campbell/markdown": "^15.2",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "*",
-        "intervention/imagecache": "*",
-        "kalnoy/nestedset": "*",
-        "konekt/concord": "*",
-        "laravel/framework": "^8.6.0",
+        "intervention/imagecache": "2.5.2",
+        "kalnoy/nestedset": "^6.0",
+        "konekt/concord": "^1.2",
+        "laravel/framework": "^10.0",
         "laravel/helpers": "1.x-dev",
-        "laravel/sanctum": "3.x-dev",
+        "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.5",
-        "league/flysystem": "1.1.0",
-        "league/flysystem-cached-adapter": "dev-master",
-        "league/flysystem-sftp": "dev-master",
-        "predis/predis": "2.0.x-dev",
-        "prettus/l5-repository": "*"
+        "predis/predis": "^2.2",
+        "prettus/l5-repository": "^2.6"
     },
     "require-dev": {
-        "facade/ignition": "^2.0",
+        "spatie/laravel-ignition": "^2.0",
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "2.x-dev",
         "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5"
+        "laravel/pint": "^1.8",
+        "nunomaduro/collision": "^7.0",
+        "pestphp/pest": "^2.6",
+        "pestphp/pest-plugin-laravel": "^2.1",
+        "phpunit/phpunit": "^10.0"
+
     },
     "replace": {
     },
@@ -96,7 +95,10 @@
     "config": {
         "preferred-install": "auto",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "dev"
 }
