@@ -12,16 +12,10 @@ services:
         uid: 1000
         user: platform_user
     restart: unless-stopped
-    # tty: true
-    # stdin_open: true
     ports:
       - 1000:80
     volumes:
       - ./:/var/www/html
-      # - ./apache2_local.conf:/etc/apache2/apache2.conf:ro
-      # - ./php.ini:/usr/local/etc/php/php.ini:ro
-      # - ~/.composer/cache:/root/.composer/cache:cached
-      # - ~/.npm:/root/.npm:cached
     depends_on:
       - platform-db
       - platform-redis
@@ -39,15 +33,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # args:
-      #   project_path: /var/www/html/
-      #   uid: 1000
-      #   user: $USER
     restart: unless-stopped
     tty: true
     volumes:
       - ./:/var/www/html
-      # - ./php.ini:/usr/local/etc/php/php.ini:ro
     command: 'php ./artisan queue:work --sleep=3 --tries=3'
     depends_on:
       - platform-db
@@ -66,15 +55,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # args:
-      #   project_path: /var/www/html/
-      #   uid: 1000
-      #   user: $USER
     restart: unless-stopped
     tty: true
     volumes:
       - ./:/var/www/html:cached
-      # - ./php.ini:/usr/local/etc/php/php.ini:ro
     command: 'php ./artisan horizon'
     depends_on:
       - platform-db
@@ -106,8 +90,6 @@ services:
     image: mariadb:10.3
     restart: unless-stopped
     container_name: platform-db
-#    ports:
-#      - 127.0.0.1:3306:3306/tcp
     volumes:
       - ./mariadb.cnf:/etc/mysql/my.cnf:ro
       - dbData:/var/lib/mysql:cached
