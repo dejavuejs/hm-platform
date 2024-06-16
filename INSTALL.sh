@@ -4,29 +4,52 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#WORK_DIR=/home/ubuntu/bryg
+# just to be sure that no traces left
+docker-compose down -v
 
-cd /home/ubuntu/oa-omr
+# building and running docker-compose file
+docker-compose build && docker-compose up -d
 
+# container id by image name
+apache_container_id=$(docker ps -aqf "name=platform-php-apache")
+db_container_id=$(docker ps -aqf "name=platform-mysql")
+worker_container_id=$(docker ps -aqf "name=platform-worker")
 
-find /home/ubuntu/oa-omr/storage/ -type d -exec chmod 777 {} \;
-find /home/ubuntu/oa-omr/storage/ -type f -exec chmod 666 {} \;
+# checking connection
+echo "Please wait... Waiting for MySQL connection..."
+while ! docker exec ${db_container_id} mysql --user=root --password=omr -e "SELECT 1" >/dev/null 2>&1; do
+    sleep 1
+done
 
-# cd /home/ubuntu/bryg/packages/Webkul/Admin && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/Custom && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/CustomerDocument && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/PreOrder && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/SAASCustomizer && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/Shop && npm i && npm run production
-#cd /home/ubuntu/bryg/packages/Webkul/ShowPriceAfterLogin && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/StripeConnect && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Ecommvu/StripeConnect && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Webkul/Ui && npm i && npm run production
-# cd /home/ubuntu/bryg/packages/Razzo/DeliveryDate && npm i && npm run production
+# creating empty database for platform
+echo "Creating empty database for platform..."
+while ! docker exec ${db_container_id} mysql --user=root --password=omr -e "CREATE DATABASE platform CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" >/dev/null 2>&1; do
+    sleep 1
+done
 
-cd /home/ubuntu/oa-omr && php ./composer.phar install --no-dev
+# creating empty database for platform testing
+echo "Creating empty database for platform testing..."
+while ! docker exec ${db_container_id} mysql --user=root --password=root -e "CREATE DATABASE platform_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" >/dev/null 2>&1; do
+    sleep 1
+done
 
-cd /home/ubuntu/oa-omr && php ./artisan storage:link
-#cd /home/ubuntu/oa-omr && php ./artisan vendor:publish --all --force
+docker exec -i ${apache_container_id} bash -c "cd /var/www/html && find storage/ -type d -exec chmod 777 {} \;"
+docker exec -i ${apache_container_id} bash -c "cd /var/www/html && find storage/ -type f -exec chmod 666 {} \;"
 
-cd /home/ubuntu/oa-omr && npm i && npm run production
+# setting up platform
+# echo "Now, setting up platform..."
+# docker exec ${apache_container_id} git clone https://github.com/platform/platform
+
+# # setting platform stable version
+# echo "Now, setting up platform stable version..."
+# docker exec -i ${apache_container_id} bash -c "cd platform && git reset --hard $(git describe --tags $(git rev-list --tags --max-count=1))"
+
+# installing composer dependencies inside container
+docker exec -i ${apache_container_id} bash -c "cd /var/www/html && composer install"
+
+# moving `.env` file
+docker cp .env.example ${apache_container_id}:/var/www/html/.env
+# docker cp .configs/.env.testing ${apache_container_id}:/var/www/html/platform/.env.testing
+
+# executing final commands
+docker exec -i ${apache_container_id} bash -c "cd /var/www/html && php artisan optimize:clear && php artisan db:seed && php artisan migrate:fresh --seed && php artisan storage:link && php artisan vendor:publish --force && php artisan optimize:clear && php artisan horizon:install"
