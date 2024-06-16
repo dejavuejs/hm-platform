@@ -33,64 +33,66 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # worker:
-  #   # image: omr
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     args:
-  #       project_path: /var/www/html/
-  #       uid: 1000
-  #       user: $USER
-  #   restart: unless-stopped
-  #   tty: true
-  #   volumes:
-  #     - ./:/var/www/html
-  #     # - ./php.ini:/usr/local/etc/php/php.ini:ro
-  #   command: 'php ./artisan queue:work --sleep=3 --tries=3'
-  #   depends_on:
-  #     - db
-  #     - redis
-  #   links:
-  #     - db
-  #     - redis
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
+  platform-worker:
+    image: platform-php-apache
+    container_name: platform-worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+      #   project_path: /var/www/html/
+      #   uid: 1000
+      #   user: $USER
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./:/var/www/html
+      # - ./php.ini:/usr/local/etc/php/php.ini:ro
+    command: 'php ./artisan queue:work --sleep=3 --tries=3'
+    depends_on:
+      - platform-db
+      - platform-redis
+    links:
+      - platform-db
+      - platform-redis
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
-  # horizon:
-  #   # image: omr
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     args:
-  #       project_path: /var/www/html/
-  #       uid: 1000
-  #       user: $USER
-  #   restart: unless-stopped
-  #   tty: true
-  #   volumes:
-  #     - ./:/var/www/html:cached
-  #     # - ./php.ini:/usr/local/etc/php/php.ini:ro
-  #   command: 'php ./artisan horizon'
-  #   depends_on:
-  #     - db
-  #     - redis
-  #   links:
-  #     - db
-  #     - redis
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
+  platform-horizon:
+    image: platform-php-apache
+    container_name: platform-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+      #   project_path: /var/www/html/
+      #   uid: 1000
+      #   user: $USER
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./:/var/www/html:cached
+      # - ./php.ini:/usr/local/etc/php/php.ini:ro
+    command: 'php ./artisan horizon'
+    depends_on:
+      - platform-db
+      - platform-redis
+    links:
+      - platform-db
+      - platform-redis
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   platform-redis:
     image: redis:5-alpine
     restart: unless-stopped
     container_name: platform-redis
-#    ports:
-#      - 127.0.0.1:6379:6379/tcp
+    ports:
+     - 6379:6379/tcp
     volumes:
       - ./redis.conf:/etc/redis.conf:ro
       - redisData:/data:cached

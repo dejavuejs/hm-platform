@@ -213,9 +213,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //Laravel Intervention
-        Intervention\Image\ImageServiceProvider::class,
-
         //Laravel Maatwebsite
         // Maatwebsite\Excel\ExcelServiceProvider::class,
 

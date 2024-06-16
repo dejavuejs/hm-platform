@@ -16,7 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update \
 && apt install -q -y --no-install-recommends python3
 
 #Install PHP extensions zip and intl (intl requires to be configured)
-RUN docker-php-ext-install zip && docker-php-ext-configure intl && docker-php-ext-install intl exif gd pdo_mysql
+RUN docker-php-ext-install zip && docker-php-ext-configure intl && docker-php-ext-install intl exif gd pdo_mysql pcntl
 
 #PostgreSQL
 RUN apt-get install libpq-dev -y
@@ -71,7 +71,7 @@ RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
 ##      Install Postman CLI
 ## ---------------------------------------
 
-RUN curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+# RUN curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 ##      Postman CLI installed
 ## ---------------------------------------
 
@@ -95,7 +95,6 @@ zend_extension=xdebug \n\
 xdebug.mode = debug,coverage \n\
 xdebug.discover_client_host = on \n\
 xdebug.client_host = host.docker.internal \n\
-' > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-
+' > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN usermod -u 1001 www-data && groupmod -g 1001 www-data
