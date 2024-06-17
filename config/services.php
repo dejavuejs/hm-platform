@@ -42,5 +42,9 @@ return [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+    'assembly_ai' => [
+        'key' => env('ASSEMBLY_AI_KEY')
     ]
 ];

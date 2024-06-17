@@ -21,7 +21,8 @@ class TranscriptionJob extends Model implements ContractsTranscriptionJob
         'status_label',
         'status',
         'transcription_result',
-        'transcription_text'
+        'transcription_text',
+        'file_path'
     ];
 
     // /**

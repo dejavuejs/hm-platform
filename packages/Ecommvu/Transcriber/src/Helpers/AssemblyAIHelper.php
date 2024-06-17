@@ -19,7 +19,7 @@ class AssemblyAIHelper {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // replace with your API key
-        $YOUR_API_KEY = "8d249894f8954b6784fc2ad416015706";
+        $YOUR_API_KEY = config('services.assembly_ai.key');
 
         // URL of the file to transcribe
         // $FILE_URL = "https://github.com/AssemblyAI-Examples/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3";
@@ -29,7 +29,7 @@ class AssemblyAIHelper {
         // $FILE_URL = './path/to/file.mp3';
 
         // AssemblyAI transcript endpoint (where we submit the file)
-        $transcript_endpoint = "https://api.assemblyai.com/v2/transcript";
+        $endpoint = "https://api.assemblyai.com/v2/transcript";
 
         // Request parameters
         $data = [
@@ -38,17 +38,17 @@ class AssemblyAIHelper {
             'speaker_labels' => true,
             // 'speakers_expected' => 2,
             'language_code' => 'hi',
-            // "redact_pii" => true,
-            // "redact_pii_sub" => "hash",
-            // "redact_pii_policies" => [
-            //     "phone_number",
-            //     "medical_condition",
-            //     "banking_information",
-            //     "credit_card_number",
-            //     "date_of_birth",
-            //     "credit_card_cvv",
-            //     "credit_card_expiration"
-            // ]
+            "redact_pii" => true,
+            "redact_pii_sub" => "hash",
+            "redact_pii_policies" => [
+                "phone_number",
+                "medical_condition",
+                "banking_information",
+                "credit_card_number",
+                "date_of_birth",
+                "credit_card_cvv",
+                "credit_card_expiration"
+            ]
         ];
 
         // HTTP request headers
@@ -58,7 +58,7 @@ class AssemblyAIHelper {
         );
 
         // submit for transcription via HTTP request
-        $curl = curl_init($transcript_endpoint);
+        $curl = curl_init($endpoint);
 
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
@@ -76,31 +76,43 @@ class AssemblyAIHelper {
         $polling_endpoint = "https://api.assemblyai.com/v2/transcript/" . $transcript_id;
 
         while (true) {
-            $polling_response = curl_init($polling_endpoint);
+            $pollingResponse = curl_init($polling_endpoint);
 
-            curl_setopt($polling_response, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($polling_response, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($pollingResponse, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($pollingResponse, CURLOPT_RETURNTRANSFER, true);
 
-            $transcription_result = json_decode(curl_exec($polling_response), true);
+            $transcriptionResult = json_decode(curl_exec($pollingResponse), true);
 
-            if (isset($transcription_result['status']) && $transcription_result['status'] === "completed") {
-                $this->transcriber->create(
+            if (isset($transcriptionResult['status']) && $transcriptionResult['status'] === "completed") {
+                $result = $this->transcriber->create(
                     [
                         "source_path" => $FILE_URL,
                         "status_label" => "completed",
                         "status" => true,
-                        "transcription_result" => json_encode($transcription_result),
-                        "transcription_text" => $transcription_result['text']
+                        "transcription_result" => json_encode($transcriptionResult),
                     ]
                 );
 
-                Storage::append('transcribes/1.log', $transcription_result['text']);
+                $utterances = $transcriptionResult['utterances'];
+                $filePath = "transcriptions/" . $result->id . ".log";
+                foreach ($utterances as $utterance) {
+                    $speaker = $utterance['speaker'];
+                    $text = $utterance['text'];
+                    $utter = $speaker . ": " . $text . "\n";
+                    Storage::append($filePath, $utter);
+                }
+
+                $result->update(
+                    [
+                        "file_path" => $filePath
+                    ]
+                );
 
                 echo "Operation complete";
 
                 break;
-            } else if (isset($transcription_result['status']) && $transcription_result['status'] === "error") {
-                throw new \Exception("Transcription failed: " . $transcription_result['error']);
+            } else if (isset($transcriptionResult['status']) && $transcriptionResult['status'] === "error") {
+                throw new \Exception("Transcription failed: " . $transcriptionResult['error']);
             } else {
                 sleep(3);
             }

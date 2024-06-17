@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('status_label')->nullable();
             $table->boolean('status')->default(false);
             $table->json('transcription_result')->nullable();
-            $table->json('transcription_text')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }
