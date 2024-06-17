@@ -46,5 +46,10 @@ return [
 
     'assembly_ai' => [
         'key' => env('ASSEMBLY_AI_KEY')
+    ],
+
+    'chat_gpt' => [
+        'endpoint' => 'https://api.openai.com',
+        'key' => env('CHAT_GPT_KEY')
     ]
 ];
