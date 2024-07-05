@@ -50,6 +50,9 @@ return [
 
     'chat_gpt' => [
         'endpoint' => 'https://api.openai.com',
-        'key' => env('CHAT_GPT_KEY')
+        'key' => env('CHAT_GPT_KEY'),
+        'feedback_gpt_id' => env('FEEDBACK_GPT_ID', 'asst_GXBDQuIZ2FTXgrtcdJo8cjFA'),
+        'prescription_gpt_id' => env('PRESCRIPTION_GPT_ID', 'asst_fcRvEVuKaRM7trzU8YjMXM3W'),
+        'assistant_gpt_id' => env('ASSISTANT_GPT_ID', 'asst_J4bhCM9HWSsesVO9o150hWse')
     ]
 ];

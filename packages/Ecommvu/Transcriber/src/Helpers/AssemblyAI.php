@@ -5,7 +5,7 @@ namespace Ecommvu\Transcriber\Helpers;
 use Ecommvu\Transcriber\Repositories\TranscriptionJobRepository;
 use Illuminate\Support\Facades\Storage;
 
-class AssemblyAIHelper {
+class AssemblyAI {
     protected $transcriber;
 
     public function __construct(TranscriptionJobRepository $transcriber)
