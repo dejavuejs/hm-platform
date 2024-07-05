@@ -2,6 +2,6 @@
 
 namespace Ecommvu\Transcriber\Contracts;
 
-interface TranscriptionJob
+interface PatientConsultation
 {
 }

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transcription_jobs', function (Blueprint $table) {
+        Schema::create('patient_cases', function (Blueprint $table) {
             $table->id();
-            $table->string('source_path')->nullable();
-            $table->string('status_label')->nullable();
-            $table->boolean('status')->default(false);
-            $table->json('transcription_result')->nullable();
-            $table->string('file_path')->nullable();
+            $table->string('case_id');
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->on('patients')->references('id')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transcription_jobs');
+        Schema::dropIfExists('patient_cases');
     }
 };

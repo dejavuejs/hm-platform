@@ -7,7 +7,7 @@ use Orca\Core\Eloquent\Repository;
 /**
  * TranscriberRepository
  */
-class TranscriptionJobRepository extends Repository
+class PatientConsultationRepository extends Repository
 {
     /**
      * Specify Model class name
@@ -16,6 +16,6 @@ class TranscriptionJobRepository extends Repository
      */
     function model()
     {
-        return 'Ecommvu\Transcriber\Contracts\TranscriptionJob';
+        return 'Ecommvu\Transcriber\Contracts\PatientConsultation';
     }
 }

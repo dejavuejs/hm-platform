@@ -22,25 +22,25 @@ return [
     //     'sort' => 3,
     //     'icon-class' => '',
     // ]
-    , [
-        'key' => 'customers',
-        'name' => 'admin::app.layouts.customers',
-        'route' => 'admin.customer.index',
-        'sort' => 4,
-        'icon-class' => 'customer-icon',
-    ], [
-        'key' => 'customers.customers',
-        'name' => 'admin::app.layouts.customers',
-        'route' => 'admin.customer.index',
-        'sort' => 1,
-        'icon-class' => '',
-    ], [
-        'key' => 'customers.groups',
-        'name' => 'admin::app.layouts.groups',
-        'route' => 'admin.groups.index',
-        'sort' => 2,
-        'icon-class' => '',
-    ],
+    // , [
+    //     'key' => 'customers',
+    //     'name' => 'admin::app.layouts.customers',
+    //     'route' => 'admin.customer.index',
+    //     'sort' => 4,
+    //     'icon-class' => 'customer-icon',
+    // ], [
+    //     'key' => 'customers.customers',
+    //     'name' => 'admin::app.layouts.customers',
+    //     'route' => 'admin.customer.index',
+    //     'sort' => 1,
+    //     'icon-class' => '',
+    // ], [
+    //     'key' => 'customers.groups',
+    //     'name' => 'admin::app.layouts.groups',
+    //     'route' => 'admin.groups.index',
+    //     'sort' => 2,
+    //     'icon-class' => '',
+    // ],
     // [
     //     'key' => 'customers.reviews',
     //     'name' => 'admin::app.layouts.reviews',
