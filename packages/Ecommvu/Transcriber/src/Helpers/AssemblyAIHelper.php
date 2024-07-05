@@ -108,7 +108,7 @@ class AssemblyAIHelper {
                     ]
                 );
 
-                echo "Operation complete";
+                return $result;
 
                 break;
             } else if (isset($transcriptionResult['status']) && $transcriptionResult['status'] === "error") {
