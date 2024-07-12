@@ -6,11 +6,12 @@ use Ecommvu\Transcriber\Repositories\TranscriptionJobRepository;
 use Illuminate\Support\Facades\Storage;
 
 abstract class BaseGPT {
-    private $assistantId;
-    private $thread;
-    private $message;
-    private $runAssistant;
-    private $reply;
+    public $assistantId;
+    public $thread;
+    public $message;
+    public $runAssistant;
+    public $reply;
+    public $transcriptPath;
 
     public function getHeaders()
     {
@@ -37,13 +38,14 @@ abstract class BaseGPT {
         $this->thread = $thread;
     }
 
-    public function addMessages($transcriptPath = null)
+    public function addMessages()
     {
         $curl = curl_init(config('services.chat_gpt.endpoint') . "/v1/threads/" . $this->thread['id'] . "/messages");
 
+        $transcriptData = Storage::get($this->transcriptPath);
         $data = [
             "role" => "user",
-            "content" => "Help me, i'm unable to sleep during night"
+            "content" => $transcriptData
         ];
 
         curl_setopt($curl, CURLOPT_POST, true);
@@ -60,7 +62,6 @@ abstract class BaseGPT {
 
     public function runAssistant()
     {
-        // create thread
         $curl = curl_init(config('services.chat_gpt.endpoint') . "/v1/threads/". $this->thread['id'] . "/runs");
 
         $data = [
@@ -77,12 +78,35 @@ abstract class BaseGPT {
         curl_close($curl);
 
         $this->runAssistant = $runAssistant;
+
+        while (true) {
+            if ($runAssistant['status'] !== 'completed') {
+                $curl = curl_init(config('services.chat_gpt.endpoint') . "/v1/threads/". $this->thread['id'] . "/runs/" . $this->runAssistant['id']);
+
+                curl_setopt($curl, CURLOPT_HTTPGET, true);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $runAssistant = curl_exec($curl);
+                $runAssistant = json_decode($runAssistant, true);
+                curl_close($curl);
+
+                if ($runAssistant['status'] == 'completed') {
+                    $this->runAssistant = $runAssistant;
+                    return;
+                }
+            }  else if ($runAssistant['status'] == 'expired' || $runAssistant['status'] == 'failed' || $runAssistant['cancelled'] || $runAssistant['status'] == 'requires_action') {
+                throw new Exception('Run failed or expired or cancelled, please try again');
+            } else {
+                sleep(5);
+            }
+        }
     }
 
     public function getReply()
     {
         // create thread
-        $curl = curl_init(config('services.chat_gpt.endpoint') . "/v1/threads/". $this->threadId . "/messages");
+        $curl = curl_init(config('services.chat_gpt.endpoint') . "/v1/threads/". $this->thread['id'] . "/messages");
 
         curl_setopt($curl, CURLOPT_HTTPGET, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());

@@ -4,6 +4,7 @@ namespace Ecommvu\Transcriber\DataGrids;
 
 use Illuminate\Support\Facades\DB;
 use Orca\Ui\DataGrid\DataGrid;
+use Illuminate\Support\Facades\Storage;
 
 class PatientConsultationDataGrid extends DataGrid
 {
@@ -13,7 +14,7 @@ class PatientConsultationDataGrid extends DataGrid
 
     public function prepareQueryBuilder()
     {
-        $queryBuilder = DB::table('patient_consultations')->addSelect('id', 'transcript_path', 'transcript_completed', 'prescription_notes_path', 'assistant_notes_path', 'feedback_notes_path', 'status_label', 'status');
+        $queryBuilder = DB::table('patient_consultations')->addSelect('id', 'transcript_path', 'transcription_status', 'prescription_notes_path', 'assistant_notes_path', 'feedback_notes_path', 'status_label', 'status');
 
         // $this->addFilter('status', 'marketing_campaigns.status');
 
@@ -32,12 +33,19 @@ class PatientConsultationDataGrid extends DataGrid
         ]);
 
         $this->addColumn([
-            'index'      => 'transcript_completed',
+            'index'      => 'transcription_status',
             'label'      => trans('Transcribed'),
             'type'       => 'string',
             'searchable' => false,
             'sortable'   => true,
             'filterable' => true,
+            'closure'    => true,
+            'wrapper' => function($value) {
+                if ($value->transcription_status)
+                    return '<span class="badge badge-md badge-success">Done</span>';
+                else if (!$value->transcription_status)
+                    return '<span class="badge badge-md badge-warning">Pending</span>';
+            }
         ]);
 
         $this->addColumn([
@@ -47,6 +55,13 @@ class PatientConsultationDataGrid extends DataGrid
             'searchable' => false,
             'sortable'   => true,
             'filterable' => true,
+            'closure' => true,
+            // 'wrapper' => function($value) {
+            //     return Storage::url($value->prescription_notes_path);
+            // }
+            'wrapper' => function($value) {
+                return '<a href=' . Storage::url($value->prescription_notes_path) . '>Download</a>';
+            }
         ]);
 
         $this->addColumn([
@@ -56,12 +71,12 @@ class PatientConsultationDataGrid extends DataGrid
             'searchable' => false,
             'sortable'   => true,
             'filterable' => true,
-            // 'wrapper'    => function ($value) {
-            //     if ($value->status == 1) {
-            //         return trans('admin::app.datagrid.active');
-            //     } else {
-            //         return trans('admin::app.datagrid.inactive');
-            //     }
+            'closure' => true,
+            'wrapper' => function($value) {
+                return '<a href=' . Storage::url($value->assistant_notes_path) . '>Download</a>';
+            }
+            // 'wrapper' => function ($value) {
+            //     return '<a href="' .  Storage::url($value->assistant_notes_path) . '">Download</a>';
             // },
         ]);
 
@@ -72,6 +87,13 @@ class PatientConsultationDataGrid extends DataGrid
             'searchable' => false,
             'sortable'   => false,
             'filterable' => false,
+            'closure' => true,
+            // 'wrapper' => function($value) {
+            //     return Storage::url($value->feedback_notes_path);
+            // }
+            'wrapper' => function($value) {
+                return '<a href=' . Storage::url($value->feedback_notes_path) . '>Download</a>';
+            }
         ]);
 
         $this->addColumn([
@@ -81,6 +103,15 @@ class PatientConsultationDataGrid extends DataGrid
             'searchable' => false,
             'sortable'   => true,
             'filterable' => true,
+            'closure' => true,
+            'wrapper' => function ($value) {
+                if ($value->status_label == 'processing')
+                    return '<span class="badge badge-md badge-success">Processing</span>';
+                else if ($value->status_label == 'completed')
+                    return '<span class="badge badge-md badge-success">Completed</span>';
+                else if ($value->status_label == "pending")
+                    return '<span class="badge badge-md badge-warning">Pending</span>';
+            },
         ]);
     }
 
